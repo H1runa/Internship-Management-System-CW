@@ -22,21 +22,22 @@ public class Main {
             )
         );
         
-        StudentController ctrl = new StudentController();        
-//        ctrl.addStudent("Shoto", "todoroki456@gmail.com", "0112409190");
-//        viewStudent(ctrl.getStudentByID(3));
-//        ctrl.getStudents().forEach(a -> {viewStudent(a);});
-        ctrl.deleteStudent(3);
-//        ctrl.deleteAll();
+        EmployerController controller = new EmployerController();
+        controller.addEmployer("Joey", "wodwoodpeck@whatever.com", "0773737538");
+//        controller.deleteEmployer(1);
+//        controller.updateEmployer(1, "Peter", "legenday@gmail.com", "0112409191");
+        viewEmployer(controller.getEmployerByID(12));
+//        controller.getEmployers().forEach(a-> {viewEmployer(a);});
+        
         
     }
     
-    public static void viewStudent(Student std){
+    public static void viewEmployer(Employer emp){
         System.out.println("");
-        System.out.println(std.getStd_id());
-        System.out.println(std.getName());
-        System.out.println(std.getEmail());
-        System.out.println(std.getPhone());
+        System.out.println(emp.getEmp_id());
+        System.out.println(emp.getName());
+        System.out.println(emp.getEmail());
+        System.out.println(emp.getPhone());
         System.out.println(""); //line break for mulitple students
     }
 }

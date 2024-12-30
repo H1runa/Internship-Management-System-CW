@@ -1,11 +1,10 @@
 package com.mycompany.internshipmanager.controllers;
 
-import com.mycompany.internshipmanager.DBConnection;
 import java.util.List;
 import com.mycompany.internshipmanager.models.Student;
 import com.mycompany.internshipmanager.models.StudentDAO;
 import java.sql.SQLException;
-import java.sql.Connection;
+
 
 /**
  *
@@ -14,10 +13,8 @@ import java.sql.Connection;
 public class StudentController {
     
     private StudentDAO dao;
-    private Connection conn;
     
-    public StudentController(){
-       this.conn = DBConnection.getConnection();
+    public StudentController(){      
        this.dao = new StudentDAO();
     }
     
@@ -62,7 +59,7 @@ public class StudentController {
         }
     }
     
-    public void updateStudent(String name, String email, String phone){
+    public void updateStudent(int id, String name, String email, String phone){
         //name validation
         if (name == null || name.trim().isEmpty()){
             throw new IllegalArgumentException("Invalid name");
@@ -76,7 +73,7 @@ public class StudentController {
             throw new IllegalArgumentException("Invalid phone number");
         }
         try{
-            Student std = new Student(0, name, email, phone);
+            Student std = new Student(id, name, email, phone);
             dao.updateStudent(std);
         } catch (SQLException ex){
             System.out.println("Student details could not be updated. \n Error: "+ ex. getMessage());

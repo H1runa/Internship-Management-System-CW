@@ -1,5 +1,8 @@
+com\mycompany\internshipmanager\controllers\EmployerController.class
+com\mycompany\internshipmanager\models\EmployerDAO.class
 com\mycompany\internshipmanager\DBConnection.class
 com\mycompany\internshipmanager\models\Student.class
 com\mycompany\internshipmanager\models\StudentDAO.class
 com\mycompany\internshipmanager\Main.class
+com\mycompany\internshipmanager\models\Employer.class
 com\mycompany\internshipmanager\controllers\StudentController.class
