@@ -22,11 +22,11 @@ public class Main {
             )
         );
         
-        StudentController ctrl = new StudentController();
-//        ctrl.addStudent("Nier", "automata@gmail.com", "356421248576");
+        StudentController ctrl = new StudentController();        
+//        ctrl.addStudent("Shoto", "todoroki456@gmail.com", "0112409190");
 //        viewStudent(ctrl.getStudentByID(3));
 //        ctrl.getStudents().forEach(a -> {viewStudent(a);});
-//        ctrl.deleteStudent(2);
+        ctrl.deleteStudent(3);
 //        ctrl.deleteAll();
         
     }

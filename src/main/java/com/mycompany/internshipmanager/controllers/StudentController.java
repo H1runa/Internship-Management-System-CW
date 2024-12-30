@@ -22,7 +22,19 @@ public class StudentController {
     }
     
     public void addStudent(String name, String em, String ph){
-        //add validation code here
+        //name validation
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Invalid name");
+        }
+        //email validation
+        if (em == null || !em.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
+            throw new IllegalArgumentException("Invalid email");
+        }
+        //phone number validation
+        if (ph == null || ph.trim().isEmpty() || !ph.trim().matches("\\d{10}$")) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+        
         Student std = new Student(0, name, em , ph);
         try{
             dao.addStudent(std);
@@ -41,8 +53,7 @@ public class StudentController {
         }
     }
     
-    public Student getStudentByID(int id){
-        //add validation
+    public Student getStudentByID(int id){        
         try{
             return dao.getStudentByID(id);
         } catch(SQLException ex){
@@ -52,7 +63,18 @@ public class StudentController {
     }
     
     public void updateStudent(String name, String email, String phone){
-        //validation here
+        //name validation
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Invalid name");
+        }
+        //email validation
+        if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
+            throw new IllegalArgumentException("Invalid email");
+        }
+        //phone number validation
+        if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
         try{
             Student std = new Student(0, name, email, phone);
             dao.updateStudent(std);
@@ -62,7 +84,7 @@ public class StudentController {
     }
     
     public void deleteStudent(int id){
-        //validation goes here
+        
         try{
             dao.deleteStudent(id);            
         } catch(SQLException ex){
