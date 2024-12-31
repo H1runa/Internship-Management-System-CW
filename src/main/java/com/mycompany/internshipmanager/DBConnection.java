@@ -34,6 +34,10 @@ public class DBConnection{
                 if (conn == null){
                     try{
                         conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
+                        Statement stmt = conn.createStatement();
+                        
+                        stmt.executeUpdate("PRAGMA foreign_keys = ON;"); //enabling the foreign key constraint. no it doesnt enable by default apparently
+                        
                         System.out.println("Database connection retrieved.");
                     } catch (SQLException ex){
                         System.out.println("Database connection could not be retrieved: "+ex.getMessage());

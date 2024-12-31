@@ -21,18 +21,27 @@ public class Main {
                 }
             )
         );
+        InternshipController c = new InternshipController();
+        
+        
+//        viewInternship(c.getInternshipByID(1));
+//        c.addInternship("Instructor", "You can be useless for 2 months", "2", "2", "Open");
+//          c.deleteInternship(15);
+//            c.updateInternship(2, "Professional Skating", "You skate to your hearts content", "3", "15", "Open");
         
        
         
         
     }
     
-    public static void viewEmployer(Employer emp){
+    public static void viewInternship(Internship i){
         System.out.println("");
-        System.out.println(emp.getEmp_id());
-        System.out.println(emp.getName());
-        System.out.println(emp.getEmail());
-        System.out.println(emp.getPhone());
+        System.out.println(i.getId());
+        System.out.println(i.getTitle());
+        System.out.println(i.getDescription());
+        System.out.println(i.getEmp_id());
+        System.out.println(i.getDuration());
+        System.out.println(i.getStatus());
         System.out.println(""); //line break for mulitple students
     }
 }

@@ -16,15 +16,18 @@ public class EmployerController {
     public void addEmployer(String name, String email, String phone){
         //name validation
         if (name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("Invalid name");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            throw new IllegalArgumentException("Invalid email");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
-            throw new IllegalArgumentException("Invalid phone number");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         
         Employer emp = new Employer(0, name, email, phone);
@@ -58,15 +61,18 @@ public class EmployerController {
     public void updateEmployer(int id, String name, String email, String phone){
          //name validation
         if (name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("Invalid name");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            throw new IllegalArgumentException("Invalid email");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
-            throw new IllegalArgumentException("Invalid phone number");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         
         Employer emp = new Employer(id, name, email, phone);

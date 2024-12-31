@@ -21,15 +21,18 @@ public class StudentController {
     public void addStudent(String name, String em, String ph){
         //name validation
         if (name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("Invalid name");
+            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
+            return;
         }
         //email validation
         if (em == null || !em.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            throw new IllegalArgumentException("Invalid email");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //phone number validation
         if (ph == null || ph.trim().isEmpty() || !ph.trim().matches("\\d{10}$")) {
-            throw new IllegalArgumentException("Invalid phone number");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         
         Student std = new Student(0, name, em , ph);
@@ -62,15 +65,18 @@ public class StudentController {
     public void updateStudent(int id, String name, String email, String phone){
         //name validation
         if (name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("Invalid name");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            throw new IllegalArgumentException("Invalid email");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
-            throw new IllegalArgumentException("Invalid phone number");
+            System.out.println("Internship not added.\nInvalid input");
+            return;
         }
         try{
             Student std = new Student(id, name, email, phone);
