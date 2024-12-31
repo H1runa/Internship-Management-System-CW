@@ -38,9 +38,12 @@ public class EmployerDAO {
                     Employer emp = new Employer(rs.getInt("emp_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
                     return emp;
                 }
+                else{
+                    throw new SQLException("Null returned");
+                }
             }
         }
-        return null;
+        
     }
     
     public List<Employer> getEmployers() throws SQLException{
@@ -71,8 +74,12 @@ public class EmployerDAO {
             prp.setString(3, emp.getPhone());
             prp.setInt(4, emp.getEmp_id());
             
-            prp.executeUpdate();
-            System.out.println("Employer updated.");
+            int rows_affected = prp.executeUpdate();
+            if(rows_affected > 0){
+                System.out.println("Employer updated.");
+            } else {
+                throw new SQLException("ID not found");
+            }
         }
     }
     
@@ -82,8 +89,13 @@ public class EmployerDAO {
         try(PreparedStatement prp = conn.prepareStatement(query)){
             prp.setInt(1, id);
             
-            prp.executeUpdate();
-            System.out.println("Employer deleted.");
+            int rows_affected = prp.executeUpdate();
+            if (rows_affected > 0){
+                System.out.println("Employer deleted.");
+            } else {
+                throw new SQLException("ID not found");
+            }
+            
         }
     }
     

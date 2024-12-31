@@ -42,9 +42,7 @@ public class EmployerController {
         } catch (SQLException ex){
             System.out.println("Employer could not be retrieved. \nError: "+ ex.getMessage());
             return null;
-        }
-        
-        
+        }                 
     }
     
     public List<Employer> getEmployers(){

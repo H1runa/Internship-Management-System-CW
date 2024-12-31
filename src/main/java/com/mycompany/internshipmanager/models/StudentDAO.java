@@ -51,13 +51,15 @@ public class StudentDAO {
             try(ResultSet rs = prp.executeQuery()){
                 if(rs.next()){
                     Student std = new Student(rs.getInt("std_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+                    System.out.println("Student details retrieved.");
                     return std;
+                } else {
+                    throw new SQLException("ID not found");
                 }
             }
-            System.out.println("Student details retrieved.");
+            
         }
         
-        return null;
     }
     
     public void updateStudent(Student std) throws SQLException{
@@ -68,9 +70,14 @@ public class StudentDAO {
             prp.setString(3, std.getPhone());
             prp.setInt(4, std.getStd_id());
             
-            prp.executeUpdate();
+            int rows_affected = prp.executeUpdate();
+            if(rows_affected>0){
+                System.out.println("Student updated.");
+            } else {
+                throw new SQLException("ID not found");
+            }
             
-            System.out.println("Student updated.");
+            
         }
     }
     
@@ -78,9 +85,12 @@ public class StudentDAO {
         String query = "DELETE FROM Students WHERE std_id = ?";
         try(PreparedStatement prp = conn.prepareStatement(query)){
             prp.setInt(1, id);
-            prp.executeUpdate();
-            
-            System.out.println("Student deleted");
+            int rows_affected = prp.executeUpdate();
+            if (rows_affected>0){
+                System.out.println("Student deleted");
+            } else {
+                throw new SQLException("ID not found");
+            }
         }
     }
     

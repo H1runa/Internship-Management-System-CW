@@ -22,12 +22,7 @@ public class Main {
             )
         );
         
-        EmployerController controller = new EmployerController();
-        controller.addEmployer("Joey", "wodwoodpeck@whatever.com", "0773737538");
-//        controller.deleteEmployer(1);
-//        controller.updateEmployer(1, "Peter", "legenday@gmail.com", "0112409191");
-        viewEmployer(controller.getEmployerByID(12));
-//        controller.getEmployers().forEach(a-> {viewEmployer(a);});
+       
         
         
     }
