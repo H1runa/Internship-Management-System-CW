@@ -22,17 +22,20 @@ public class Main {
             )
         );
                                        
-        InternshipController c = new InternshipController();
-        c.addInternship("New work", "Dont care", "155", "9", "Open");
+//        ApplicationController c = new ApplicationController();
+//        c.addApplication("1", "1", "2012-07-15", "whoa", "Accepted");
+//        c.updateApplication(3, "1", "3", "2015-10-10", "i like women", "To be reviewed");
+        
+//        c.getApplications().forEach(a -> {view(a);});
         
         
     }
     
-    public static void view(Employer s){
+    public static void view(Application s){
         System.out.println("");
-        System.out.println(s.getEmp_id());
-        System.out.println(s.getName());
-        System.out.println(s.getDescription());
+        System.out.println(s.getApplication_id());
+        System.out.println(s.getDate());
+        System.out.println(s.getStatus());
         System.out.println("");
     }
 }
