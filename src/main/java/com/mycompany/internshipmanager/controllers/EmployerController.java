@@ -45,7 +45,8 @@ public class EmployerController {
         try {
             dao.addEmployer(emp);
         } catch (SQLException ex) {
-            System.out.println("Employer could not be added. \n Error: "+ ex.getMessage());
+            //System.out.println("Employer could not be added. \n Error: "+ ex.getMessage());
+            ex.printStackTrace();
         }
     }
     

@@ -57,6 +57,7 @@ public class InternshipController {
             dao.addInternship(intern);
         } catch (SQLException ex) {
             System.out.println("Internship could not be added. \n Error: "+ ex.getMessage());
+//            ex.printStackTrace();
         }
     }
     

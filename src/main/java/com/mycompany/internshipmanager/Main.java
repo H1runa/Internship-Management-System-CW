@@ -22,7 +22,8 @@ public class Main {
             )
         );
                                        
-        
+        InternshipController c = new InternshipController();
+        c.addInternship("New work", "Dont care", "155", "9", "Open");
         
         
     }
