@@ -13,7 +13,7 @@ public class EmployerController {
         this.dao = new EmployerDAO();
     }
     
-    public void addEmployer(String name, String email, String phone){
+    public void addEmployer(String name, String email, String phone, String description, String industry){
         //name validation
         if (name == null || name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
@@ -29,8 +29,18 @@ public class EmployerController {
             System.out.println("Internship not added.\nInvalid input");
             return;
         }
+        //desc validation
+        if (description == null || description.trim().isEmpty()){
+            System.out.println("Internship not added.\nInvalid input");
+            return;
+        }
+        //industry validation
+        if (industry == null || industry.trim().isEmpty()){ //only adding basic validation for now. may do something more with this later
+            System.out.println("Internship not added.\nInvalid input");
+            return;
+        }
         
-        Employer emp = new Employer(0, name, email, phone);
+        Employer emp = new Employer(0, name, email, phone, description, industry);
         
         try {
             dao.addEmployer(emp);
@@ -58,7 +68,7 @@ public class EmployerController {
         return null;
     }
     
-    public void updateEmployer(int id, String name, String email, String phone){
+    public void updateEmployer(int id, String name, String email, String phone, String description, String industry){
          //name validation
         if (name == null || name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
@@ -74,8 +84,18 @@ public class EmployerController {
             System.out.println("Internship not added.\nInvalid input");
             return;
         }
+        //desc validation
+        if (description == null || description.trim().isEmpty()){
+            System.out.println("Internship not added.\nInvalid input");
+            return;
+        }
+        //industry validation
+        if (industry == null || industry.trim().isEmpty()){ //only adding basic validation for now. may do something more with this later
+            System.out.println("Internship not added.\nInvalid input");
+            return;
+        }
         
-        Employer emp = new Employer(id, name, email, phone);
+        Employer emp = new Employer(id, name, email, phone, description, industry);
         try{
             dao.updateEmployer(emp);            
             

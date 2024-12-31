@@ -14,13 +14,15 @@ public class EmployerDAO {
     }
     
     public void addEmployer(Employer emp) throws SQLException{
-        String query = "INSERT INTO Employers (name, email, phone) VALUES (?, ?, ?)";
+        String query = "INSERT INTO Employers (name, email, phone, description, industry) VALUES (?, ?, ?, ?, ?)";
         
         try(PreparedStatement prp = conn.prepareStatement(query)){
             
             prp.setString(1, emp.getName());
             prp.setString(2, emp.getEmail());
             prp.setString(3, emp.getPhone());
+            prp.setString(4, emp.getDescription());
+            prp.setString(5, emp.getIndustry());
             
             prp.executeUpdate();
             System.out.println("Employer added to database.");
@@ -35,7 +37,7 @@ public class EmployerDAO {
             
             try(ResultSet rs = prp.executeQuery()){
                 if (rs.next()){
-                    Employer emp = new Employer(rs.getInt("emp_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+                    Employer emp = new Employer(rs.getInt("emp_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("description"), rs.getString("industry"));
                     return emp;
                 }
                 else{
@@ -53,7 +55,7 @@ public class EmployerDAO {
         try(Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)){            
             
             while (rs.next()){
-                Employer emp = new Employer(rs.getInt("emp_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+                Employer emp = new Employer(rs.getInt("emp_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("description"), rs.getString("industry"));
                 emps.add(emp);
             }
             
@@ -66,13 +68,15 @@ public class EmployerDAO {
     }
     
     public void updateEmployer(Employer emp) throws SQLException{
-        String query = "UPDATE Employers SET name = ? , email = ? , phone = ?  WHERE emp_id = ?";
+        String query = "UPDATE Employers SET name = ? , email = ? , phone = ?, description = ?, industry = ?  WHERE emp_id = ?";
         
         try (PreparedStatement prp = conn.prepareStatement(query)){
             prp.setString(1, emp.getName());
             prp.setString(2, emp.getEmail());
             prp.setString(3, emp.getPhone());
-            prp.setInt(4, emp.getEmp_id());
+            prp.setString(4, emp.getDescription());
+            prp.setString(5, emp.getIndustry());
+            prp.setInt(6, emp.getEmp_id());
             
             int rows_affected = prp.executeUpdate();
             if(rows_affected > 0){
