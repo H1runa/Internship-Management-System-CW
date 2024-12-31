@@ -21,27 +21,23 @@ public class Main {
                 }
             )
         );
-        InternshipController c = new InternshipController();
+                                       
+        StudentController c = new StudentController();
         
-        
-//        viewInternship(c.getInternshipByID(1));
-//        c.addInternship("Instructor", "You can be useless for 2 months", "2", "2", "Open");
-//          c.deleteInternship(15);
-//            c.updateInternship(2, "Professional Skating", "You skate to your hearts content", "3", "15", "Open");
-        
-       
+//        c.addStudent("Ransilu", "IDFK", "2004-06-01", "weidshlatt@gmail.com", "0112409190", "Software", 2);
+//        viewStudent(c.getStudentByID(1));
+//        c.updateStudent(5, "Vidu", "Uknown", "2003-12-15", "whotfknow@gmail.com", "0221456789", "Software", 0);
+//        c.deleteStudent(2);
+//        c.getStudents().forEach(a->{viewStudent(a);});
         
         
     }
     
-    public static void viewInternship(Internship i){
+    public static void viewStudent(Student s){
         System.out.println("");
-        System.out.println(i.getId());
-        System.out.println(i.getTitle());
-        System.out.println(i.getDescription());
-        System.out.println(i.getEmp_id());
-        System.out.println(i.getDuration());
-        System.out.println(i.getStatus());
-        System.out.println(""); //line break for mulitple students
+        System.out.println(s.getFirst_name());
+        System.out.println(s.getLast_name());
+        System.out.println(s.getDob());
+        System.out.println("");
     }
 }

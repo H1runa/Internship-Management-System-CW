@@ -4,6 +4,9 @@ import java.util.List;
 import com.mycompany.internshipmanager.models.Student;
 import com.mycompany.internshipmanager.models.StudentDAO;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -18,24 +21,38 @@ public class StudentController {
        this.dao = new StudentDAO();
     }
     
-    public void addStudent(String name, String em, String ph){
+    public void addStudent(String first_name, String last_name, String dob, String email, String phone, String department, int yearOfStudy){
         //name validation
-        if (name == null || name.trim().isEmpty()){
+        if (first_name == null || first_name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
             return;
         }
-        //email validation
-        if (em == null || !em.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            System.out.println("Internship not added.\nInvalid input");
+        if (last_name == null || last_name.trim().isEmpty()){
+            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
             return;
         }
-        //phone number validation
-        if (ph == null || ph.trim().isEmpty() || !ph.trim().matches("\\d{10}$")) {
-            System.out.println("Internship not added.\nInvalid input");
+        //dob validation
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try{
+            LocalDate.parse(dob, formatter);
+        } catch (DateTimeParseException ex){
+            System.out.println("Internship not added. \nInvalid input (DATE)");
             return;
         }
         
-        Student std = new Student(0, name, em , ph);
+        //email validation
+        if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
+            System.out.println("Internship not added.\nInvalid input (EMAIL)");
+            return;
+        }
+        //phone number validation
+        if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
+            System.out.println("Internship not added.\nInvalid input (PHONE)");
+            return;
+        }
+        
+        
+        Student std = new Student(0, first_name, last_name, dob ,email , phone, department, yearOfStudy);
         try{
             dao.addStudent(std);
         }catch (SQLException ex){
@@ -62,12 +79,25 @@ public class StudentController {
         }
     }
     
-    public void updateStudent(int id, String name, String email, String phone){
+    public void updateStudent(int id, String first_name, String last_name, String dob, String email, String phone, String department, int yearOfStudy){
         //name validation
-        if (name == null || name.trim().isEmpty()){
-            System.out.println("Internship not added.\nInvalid input");
+        if (first_name == null || first_name.trim().isEmpty()){
+            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
             return;
         }
+        if (last_name == null || last_name.trim().isEmpty()){
+            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
+            return;
+        }
+        //dob validation
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try{
+            LocalDate.parse(dob, formatter);
+        } catch (DateTimeParseException ex){
+            System.out.println("Internship not added. \nInvalid input");
+            return;
+        }
+        
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
             System.out.println("Internship not added.\nInvalid input");
@@ -79,7 +109,7 @@ public class StudentController {
             return;
         }
         try{
-            Student std = new Student(id, name, email, phone);
+            Student std = new Student(id, first_name, last_name, dob ,email , phone, department, yearOfStudy);
             dao.updateStudent(std);
         } catch (SQLException ex){
             System.out.println("Student details could not be updated. \n Error: "+ ex. getMessage());

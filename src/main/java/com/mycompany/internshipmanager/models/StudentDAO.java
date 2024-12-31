@@ -16,11 +16,15 @@ public class StudentDAO {
     }
     
     public void addStudent(Student std) throws SQLException{
-        String query = "INSERT INTO Students (name, email, phone) VALUES (? , ? , ?)";
+        String query = "INSERT INTO Students (first_name, last_name, dob, email, phone, department, yearOfStudy) VALUES (? , ? , ?, ?, ?, ?, ?)";
         try(PreparedStatement prp = conn.prepareStatement(query)){
-            prp.setString(1, std.getName());
-            prp.setString(2, std.getEmail());
-            prp.setString(3, std.getPhone());
+            prp.setString(1, std.getFirst_name());
+            prp.setString(2, std.getLast_name());
+            prp.setString(3, std.getDob());
+            prp.setString(4, std.getEmail());
+            prp.setString(5, std.getPhone());
+            prp.setString(6, std.getDepartment());
+            prp.setInt(7, std.getYearOfStudy());
             prp.executeUpdate();
             
             System.out.println("Added student.");
@@ -32,7 +36,7 @@ public class StudentDAO {
         List<Student> stdList = new ArrayList<Student>();
         try(Statement st = conn.createStatement(); ResultSet rs = st.executeQuery(query)){
             while(rs.next()){
-                Student std = new Student(rs.getInt("std_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+                Student std = new Student(rs.getInt("std_id"), rs.getString("first_name"),rs.getString("last_name"),rs.getString("dob") , rs.getString("email"), rs.getString("phone"), rs.getString("department"),rs.getInt("yearOfStudy"));
                 stdList.add(std);                
             }            
             System.out.println("Students list retrieved");
@@ -50,7 +54,7 @@ public class StudentDAO {
             //need another try cuz i have to use this one to set params. cant executeQuery in the try-resource above
             try(ResultSet rs = prp.executeQuery()){
                 if(rs.next()){
-                    Student std = new Student(rs.getInt("std_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+                    Student std = new Student(rs.getInt("std_id"), rs.getString("first_name"),rs.getString("last_name"),rs.getString("dob") , rs.getString("email"), rs.getString("phone"), rs.getString("department"),rs.getInt("yearOfStudy"));
                     System.out.println("Student details retrieved.");
                     return std;
                 } else {
@@ -63,12 +67,16 @@ public class StudentDAO {
     }
     
     public void updateStudent(Student std) throws SQLException{
-        String query = "UPDATE Students SET name = ?, email = ?, phone = ? WHERE std_id = ?";
+        String query = "UPDATE Students SET first_name = ?, last_name = ? ,dob = ? ,email = ?, phone = ?, department = ?, yearOfStudy = ? WHERE std_id = ?";
         try(PreparedStatement prp = conn.prepareStatement(query)){
-            prp.setString(1, std.getName());
-            prp.setString(2, std.getEmail());
-            prp.setString(3, std.getPhone());
-            prp.setInt(4, std.getStd_id());
+            prp.setString(1, std.getFirst_name());
+            prp.setString(2, std.getLast_name());
+            prp.setString(3, std.getDob());
+            prp.setString(4, std.getEmail());
+            prp.setString(5, std.getPhone());
+            prp.setString(6, std.getDepartment());
+            prp.setInt(7, std.getYearOfStudy());
+            prp.setInt(8, std.getStd_id());
             
             int rows_affected = prp.executeUpdate();
             if(rows_affected>0){
