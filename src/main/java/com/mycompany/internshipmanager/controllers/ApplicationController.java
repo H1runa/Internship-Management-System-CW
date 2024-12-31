@@ -18,7 +18,7 @@ public class ApplicationController {
     }
     
     public void addApplication(String stu_id, String internship_id, String date, String resume, String status){
-        //name validation
+        //status validation
         if (!status.equals("Accepted") && !status.equals("Rejected") && !status.equals("To be reviewed")){
             System.out.println("Application not added.\nInvalid input");
             return;
@@ -40,7 +40,7 @@ public class ApplicationController {
             parsedStu_id = Integer.parseInt(stu_id);
             parsedInternship_id = Integer.parseInt(internship_id);
         } catch(NumberFormatException ex){
-            System.out.println("Internship not added.\nError: "+ ex.getMessage());
+            System.out.println("Application not added.\nError: "+ ex.getMessage());
             return;
         }
 
@@ -75,7 +75,7 @@ public class ApplicationController {
     }
     
     public void updateApplication(int id, String stu_id, String internship_id, String date, String resume, String status){
-         //name validation
+         //status validation
         if (!status.equals("Accepted") && !status.equals("Rejected") && !status.equals("To be reviewed")){
             System.out.println("Application not added.\nInvalid input");
             return;
@@ -97,7 +97,7 @@ public class ApplicationController {
             parsedStu_id = Integer.parseInt(stu_id);
             parsedInternship_id = Integer.parseInt(internship_id);
         } catch(NumberFormatException ex){
-            System.out.println("Internship not added.\nError: "+ ex.getMessage());
+            System.out.println("Application not added.\nError: "+ ex.getMessage());
             return;
         }
 

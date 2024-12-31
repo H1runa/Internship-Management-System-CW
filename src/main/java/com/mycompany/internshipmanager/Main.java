@@ -21,21 +21,25 @@ public class Main {
                 }
             )
         );
-                                       
-//        ApplicationController c = new ApplicationController();
-//        c.addApplication("1", "1", "2012-07-15", "whoa", "Accepted");
-//        c.updateApplication(3, "1", "3", "2015-10-10", "i like women", "To be reviewed");
         
-//        c.getApplications().forEach(a -> {view(a);});
+//        PlacementController c = new PlacementController();
+//        c.addPlacement("1", "1", "1", "Ongoing", "2014-05-06", "2015-10-12", "Good but kinda bad too");
+//        c.updatePlacement(1, "1", "1","1", "Finished", "2014-05-06", "2011-12-11", "work is all he knows");
+//        c.deletePlacement(1);
+//        c.deleteAll();
+        
+//        c.getPlacements().forEach(a -> {view(a);});
+                                       
         
         
     }
     
-    public static void view(Application s){
+    public static void view(Placement s){
         System.out.println("");
-        System.out.println(s.getApplication_id());
-        System.out.println(s.getDate());
+        System.out.println(s.getStart_date());
+        System.out.println(s.getEnd_date());
         System.out.println(s.getStatus());
+        System.out.println(s.getFeedback());
         System.out.println("");
     }
 }
