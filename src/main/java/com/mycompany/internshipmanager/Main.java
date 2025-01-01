@@ -1,10 +1,9 @@
 package com.mycompany.internshipmanager;
 
-import com.mycompany.internshipmanager.models.*;
-import com.mycompany.internshipmanager.controllers.*;
-import java.sql.*;
-import java.util.List;
-import java.util.ArrayList;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.mycompany.internshipmanager.views.*;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -14,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        //making sure the database conn is closed when exiting the application
+         //making sure the database conn is closed when exiting the application
         Runtime.getRuntime().addShutdownHook(new Thread(() -> 
         {
             DBConnection.closeConnection();
@@ -22,24 +21,22 @@ public class Main {
             )
         );
         
-//        PlacementController c = new PlacementController();
-//        c.addPlacement("1", "1", "1", "Ongoing", "2014-05-06", "2015-10-12", "Good but kinda bad too");
-//        c.updatePlacement(1, "1", "1","1", "Finished", "2014-05-06", "2011-12-11", "work is all he knows");
-//        c.deletePlacement(1);
-//        c.deleteAll();
+        //adding custom look and feel
+        try{
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex){
+            System.out.println("Look and feel not initialized: " + ex.getMessage());
+        }
         
-//        c.getPlacements().forEach(a -> {view(a);});
-                                       
-        
-        
-    }
-    
-    public static void view(Placement s){
-        System.out.println("");
-        System.out.println(s.getStart_date());
-        System.out.println(s.getEnd_date());
-        System.out.println(s.getStatus());
-        System.out.println(s.getFeedback());
-        System.out.println("");
+        new MainGUI().setVisible(true);
     }
 }
+    
+
+                                       
+        
+
+    
+    
+    
+
