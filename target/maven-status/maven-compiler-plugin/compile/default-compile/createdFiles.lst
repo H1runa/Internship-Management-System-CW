@@ -1,8 +1,11 @@
+com\mycompany\internshipmanager\views\StudentAddForm$1.class
 com\mycompany\internshipmanager\DBConnection.class
 com\mycompany\internshipmanager\models\Placement.class
 com\mycompany\internshipmanager\MainGUI.class
+com\mycompany\internshipmanager\views\StudentUpdateForm$1.class
 com\mycompany\internshipmanager\models\Employer.class
 com\mycompany\internshipmanager\models\Application.class
+com\mycompany\internshipmanager\LoggedStudent.class
 com\mycompany\internshipmanager\MainGUI$1.class
 com\mycompany\internshipmanager\custom_ui\BackButton.class
 com\mycompany\internshipmanager\models\PlacementDAO.class
@@ -10,6 +13,8 @@ com\mycompany\internshipmanager\views\mig_test.class
 com\mycompany\internshipmanager\views\StudentItemContainer.class
 com\mycompany\internshipmanager\custom_ui\BackButton$1.class
 com\mycompany\internshipmanager\controllers\EmployerController.class
+com\mycompany\internshipmanager\views\StudentUpdateForm$2.class
+com\mycompany\internshipmanager\views\StudentAddForm$2.class
 com\mycompany\internshipmanager\NavHistory.class
 com\mycompany\internshipmanager\controllers\InternshipController.class
 com\mycompany\internshipmanager\controllers\StudentController.class
@@ -18,6 +23,7 @@ com\mycompany\internshipmanager\models\EmployerDAO.class
 com\mycompany\internshipmanager\models\Internship.class
 com\mycompany\internshipmanager\views\StudentItemPanel$1.class
 com\mycompany\internshipmanager\views\StudentListView.class
+com\mycompany\internshipmanager\views\StudentUpdateForm.class
 com\mycompany\internshipmanager\models\InternshipDAO.class
 com\mycompany\internshipmanager\models\Student.class
 com\mycompany\internshipmanager\controllers\PlacementController.class

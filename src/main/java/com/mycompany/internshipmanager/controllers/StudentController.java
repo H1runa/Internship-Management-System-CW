@@ -21,38 +21,46 @@ public class StudentController {
        this.dao = new StudentDAO();
     }
     
-    public void addStudent(String first_name, String last_name, String dob, String email, String phone, String department, int yearOfStudy){
+    public void addStudent(String first_name, String last_name, String dob, String email, String phone, String department, String yearOfStudy){
         //name validation
         if (first_name == null || first_name.trim().isEmpty()){
-            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
-            return;
+            System.out.println("Student not added.\nInvalid input"); //add proper error handling here later
+            throw new IllegalArgumentException("Invalid First Name");
         }
         if (last_name == null || last_name.trim().isEmpty()){
-            System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
-            return;
+            System.out.println("Student not added.\nInvalid input"); //add proper error handling here later
+            throw new IllegalArgumentException("Invalid Last Name");
         }
         //dob validation
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try{
             LocalDate.parse(dob, formatter);
         } catch (DateTimeParseException ex){
-            System.out.println("Internship not added. \nInvalid input (DATE)");
-            return;
+            System.out.println("Student not added. \nInvalid input (DATE)");
+            throw new IllegalArgumentException("Invalid Date");
         }
         
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
-            System.out.println("Internship not added.\nInvalid input (EMAIL)");
-            return;
+            System.out.println("Student not added.\nInvalid input (EMAIL)");
+            throw new IllegalArgumentException("Invalid Email");
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
-            System.out.println("Internship not added.\nInvalid input (PHONE)");
-            return;
+            System.out.println("Student not added.\nInvalid input (PHONE)");
+            throw new IllegalArgumentException("Invalid Contact Number");
+        }
+        //yos validation
+        int yos = 0;
+        try{
+            yos = Integer.parseInt(yearOfStudy);
+        } catch (NumberFormatException ex){
+            System.out.println("Student not added.\nInvalid input (YOS)");
+            throw new IllegalArgumentException("Invalid number of years");
         }
         
         
-        Student std = new Student(0, first_name, last_name, dob ,email , phone, department, yearOfStudy);
+        Student std = new Student(0, first_name, last_name, dob ,email , phone, department, yos);
         try{
             dao.addStudent(std);
         }catch (SQLException ex){
@@ -79,15 +87,15 @@ public class StudentController {
         }
     }
     
-    public void updateStudent(int id, String first_name, String last_name, String dob, String email, String phone, String department, int yearOfStudy){
+    public void updateStudent(int id, String first_name, String last_name, String dob, String email, String phone, String department, String yearOfStudy){
         //name validation
         if (first_name == null || first_name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
-            return;
+            throw new IllegalArgumentException("Invalid First Name");
         }
         if (last_name == null || last_name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input"); //add proper error handling here later
-            return;
+            throw new IllegalArgumentException("Invalid Last Name");
         }
         //dob validation
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -95,21 +103,31 @@ public class StudentController {
             LocalDate.parse(dob, formatter);
         } catch (DateTimeParseException ex){
             System.out.println("Internship not added. \nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Date of Birth");
         }
         
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Email");
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Contact Number");
         }
+        
+        //yos validation
+        int yos = 0;
         try{
-            Student std = new Student(id, first_name, last_name, dob ,email , phone, department, yearOfStudy);
+            yos = Integer.parseInt(yearOfStudy);
+        } catch (NumberFormatException ex){
+            System.out.println("Student not added.\nInvalid input (YOS)");
+            throw new IllegalArgumentException("Invalid number of years");
+        }
+        
+        try{
+            Student std = new Student(id, first_name, last_name, dob ,email , phone, department, yos);
             dao.updateStudent(std);
         } catch (SQLException ex){
             System.out.println("Student details could not be updated. \n Error: "+ ex. getMessage());

@@ -1,5 +1,6 @@
 package com.mycompany.internshipmanager;
 
+import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.views.*;
 import net.miginfocom.swing.MigLayout;
 
@@ -9,16 +10,25 @@ public class MainGUI extends javax.swing.JFrame {
      * Creates new form MainGUI
      */
     public MainGUI() {
+        
+        StudentController c = new StudentController(); //logging in (REMOVE LATER)
+        LoggedStudent.getInstance().setStudent(c.getStudentByID(1));
+        
         initComponents();
+        setSize(600, 400);
         setLayout( new MigLayout("fill"));
         
-//        StudentListView list = new StudentListView();        
-//        add(list, "dock north, span");
-//        NavHistory.get().push(list); //adding to nav
+        StudentListView list = new StudentListView();        
+        add(list, "dock north, span");
+        NavHistory.get().push(list); //adding to nav
         
-        StudentAddForm addForm = new StudentAddForm();
-        add(addForm, "dock north, span");
-        NavHistory.get().push(addForm);
+//        StudentAddForm addForm = new StudentAddForm();
+//        add(addForm, "dock north, span");
+//        NavHistory.get().push(addForm);
+
+//        StudentUpdateForm upForm = new StudentUpdateForm();
+//        add(upForm, "dock north, span");
+//        NavHistory.get().push(upForm);
     }
 
     

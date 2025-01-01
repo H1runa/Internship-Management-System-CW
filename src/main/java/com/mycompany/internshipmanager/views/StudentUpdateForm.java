@@ -1,8 +1,10 @@
 package com.mycompany.internshipmanager.views;
 
+import com.mycompany.internshipmanager.LoggedStudent;
 import com.mycompany.internshipmanager.NavHistory;
 import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.custom_ui.BackButton;
+import com.mycompany.internshipmanager.models.Student;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Stack;
@@ -16,16 +18,17 @@ import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 
-public class StudentAddForm extends javax.swing.JPanel {
+public class StudentUpdateForm extends javax.swing.JPanel {
 
-    private StudentAddForm referencecopy;
+    
     private StudentController control;
+    private Student std = LoggedStudent.getInstance().getStudent();
     
     
-    public StudentAddForm() {
+    public StudentUpdateForm() {
         initComponents();
         
-        this.referencecopy = this;
+        
         this.control = new StudentController();
         
         setLayout(new MigLayout("fill, flowy"));
@@ -37,49 +40,53 @@ public class StudentAddForm extends javax.swing.JPanel {
         BackButton back = new BackButton("<-", this);       
         
         titlePanel.add(back, "cell 0 0, align left");        
-        titlePanel.add(new JLabel("Register"), "cell 1 0, align center"); //title                        
+        titlePanel.add(new JLabel("Update Student Profile"), "cell 1 0, align center"); //title                        
         
         add(titlePanel, "dock north");
         
         contentPanel.add(new JLabel("First Name: "), "align label"); //form
-        JTextField fname = new JTextField();
+        JTextField fname = new JTextField(std.getFirst_name());
         contentPanel.add(fname, "growx, wrap");
         
         contentPanel.add(new JLabel("Second Name: "), "align label");
-        JTextField lname = new JTextField();
+        JTextField lname = new JTextField(std.getLast_name());
         contentPanel.add(lname, "growx, wrap");
         
         contentPanel.add(new JLabel("Date (yyyy-MM-dd): "), "align label");
-        JTextField date = new JTextField();
+        JTextField date = new JTextField(std.getDob());
         contentPanel.add(date, "growx, wrap");
         
         contentPanel.add(new JLabel("Email: "), "align label");
-        JTextField email = new JTextField();
+        JTextField email = new JTextField(std.getEmail());
         contentPanel.add(email, "growx, wrap");
         
         contentPanel.add(new JLabel("Contact Number: "), "align label");
-        JTextField phone = new JTextField();
+        JTextField phone = new JTextField(std.getPhone());
         contentPanel.add(phone, "growx, wrap");
         
         contentPanel.add(new JLabel("Department: "), "align label");
-        JTextField dep = new JTextField();
+        JTextField dep = new JTextField(std.getDepartment());
         contentPanel.add(dep, "growx, wrap");
         
         contentPanel.add(new JLabel("Year of Study: "), "align label");
-        JTextField yos = new JTextField();
+        JTextField yos = new JTextField(String.valueOf(std.getYearOfStudy()));
         contentPanel.add(yos, "growx, wrap");  
         
         add(contentPanel, "dock center");
         
-        JButton register = new JButton("Register"); //buttons
+        JButton register = new JButton("Update"); //buttons
         register.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
                 try{
-                    control.addStudent(fname.getText(), lname.getText(), date.getText(), email.getText(), phone.getText(), dep.getText(), yos.getText());
-                } catch(IllegalArgumentException ex){
+                    control.updateStudent(std.getStd_id(),fname.getText(), lname.getText(), date.getText(), email.getText(), phone.getText(), dep.getText(), yos.getText());
+                    Student newLogged = control.getStudentByID(std.getStd_id()); //updating the logged student
+                    LoggedStudent.getInstance().setStudent(newLogged);
+                    std = newLogged;
+                } catch (IllegalArgumentException ex){
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
+                
             }
         });
         buttonPanel.add(register, "align right");
