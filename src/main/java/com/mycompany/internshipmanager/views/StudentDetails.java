@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import com.mycompany.internshipmanager.controllers.StudentController;
+import com.mycompany.internshipmanager.custom_ui.BackButton;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,20 +42,8 @@ public class StudentDetails extends javax.swing.JPanel {
         JPanel buttonPanel = new JPanel();
         
         JLabel title = new JLabel("Student Details"); //setting up the title
-        JButton back = new JButton("<-");
-        back.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                Stack<JPanel> st = NavHistory.get();
-                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor( referencecopy);
-                frame.getContentPane().removeAll();
-                st.pop();
-                
-                frame.add(st.peek(), "dock north, span");
-                frame.revalidate();
-                frame.repaint();
-            }
-        });
+        ;
+        BackButton back = new BackButton("<-", this);        
         
         titlePanel.add(back, "align left, cell 0 0");
         titlePanel.add(title, "cell 1 0, span 2");
