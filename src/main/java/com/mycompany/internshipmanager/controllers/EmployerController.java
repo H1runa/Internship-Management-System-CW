@@ -17,27 +17,27 @@ public class EmployerController {
         //name validation
         if (name == null || name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Name");
         }
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Email");
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Contact Number");
         }
         //desc validation
         if (description == null || description.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Description");
         }
         //industry validation
         if (industry == null || industry.trim().isEmpty()){ //only adding basic validation for now. may do something more with this later
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Industry entry");
         }
         
         Employer emp = new Employer(0, name, email, phone, description, industry);
@@ -73,27 +73,27 @@ public class EmployerController {
          //name validation
         if (name == null || name.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Name");
         }
         //email validation
         if (email == null || !email.trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Email");
         }
         //phone number validation
         if (phone == null || phone.trim().isEmpty() || !phone.trim().matches("\\d{10}$")) {
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Contact Number");
         }
         //desc validation
         if (description == null || description.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Description");
         }
         //industry validation
         if (industry == null || industry.trim().isEmpty()){ //only adding basic validation for now. may do something more with this later
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Industry");
         }
         
         Employer emp = new Employer(id, name, email, phone, description, industry);
