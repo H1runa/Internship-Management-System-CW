@@ -1,5 +1,6 @@
 package com.mycompany.internshipmanager;
 
+import com.mycompany.internshipmanager.student_view.MainGUI;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
