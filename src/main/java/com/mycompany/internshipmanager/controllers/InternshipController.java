@@ -16,27 +16,27 @@ public class InternshipController {
         //title validation
         if (title == null || title.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Title");
         }
         //description validation
         if (desc == null || desc.trim().isEmpty()){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Description");
         }
         // status validation
         if (!status.equals("Open") && !status.equals("Closed")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Status");
         }
         //basic emp_id validation for integer
         if (!emp_id.matches("\\d+")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Employer ID");
         }
         //duration validation
         if (!duration.matches("\\d+")){
             System.out.println("Internship not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Duration");
         }
         
         int parsedEmp_id = 0; //vars to hold the parsed value
@@ -48,7 +48,7 @@ public class InternshipController {
             parsedDuration = Integer.parseInt(duration);
         } catch(NumberFormatException ex){
             System.out.println("Internship not added.\nError: "+ ex.getMessage());
-            return;
+            throw new IllegalArgumentException("Invalid Employer ID or Duration entered");
         }
 
         Internship intern = new Internship(0, title, desc, parsedEmp_id, parsedDuration, status);
@@ -56,8 +56,7 @@ public class InternshipController {
         try {
             dao.addInternship(intern);
         } catch (SQLException ex) {
-            System.out.println("Internship could not be added. \n Error: "+ ex.getMessage());
-//            ex.printStackTrace();
+            System.out.println("Internship could not be added. \n Error: "+ ex.getMessage());            
         }
     }
     
