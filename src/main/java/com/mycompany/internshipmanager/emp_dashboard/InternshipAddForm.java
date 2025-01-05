@@ -1,4 +1,4 @@
-package com.mycompany.internshipmanager.views.internship;
+package com.mycompany.internshipmanager.emp_dashboard;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.mycompany.internshipmanager.LoggedEmployer;
@@ -21,14 +21,19 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author Asus
  */
-public class InternshipAddForm extends javax.swing.JPanel {
+public class InternshipAddForm extends javax.swing.JDialog {
 
-    InternshipController control;
+    private InternshipController control;
+    private JPanel panel;
+    private emp_dashboard dash;
     
     
-    public InternshipAddForm() {
+    public InternshipAddForm(emp_dashboard dash) {
         initComponents();
+        this.dash = dash;
         this.control = new InternshipController();
+        this.panel = new JPanel(new MigLayout("fill"));
+        
         
         setLayout(new MigLayout("fill")); //layout
         
@@ -37,9 +42,9 @@ public class InternshipAddForm extends javax.swing.JPanel {
         JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[]15[]"));
         
         JLabel title = new JLabel("Create Internship");
-        BackButton back = new BackButton("<-)", this);
+//        BackButton back = new BackButton("<-)", this);
         
-        titlePanel.add(back, "cell 0 0, align left");
+//        titlePanel.add(back, "cell 0 0, align left");
         titlePanel.add(title, "cell 1 0, align center");
         
         JPanel tPanel = new JPanel(new BorderLayout());         //defining the fields to enter data
@@ -74,6 +79,8 @@ public class InternshipAddForm extends javax.swing.JPanel {
                 if (e.getButton() == 1){
                     try{
                         control.addInternship(tField.getText(), desc.getText(), String.valueOf(LoggedEmployer.getInstance().getEmployer().getEmp_id()) , duration.getText() , status.getSelectedItem().toString());
+                        InternshipAddForm.this.dispose();
+                        dash.updateInternshipList();
                     } catch (IllegalArgumentException ex){
                         JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -88,7 +95,7 @@ public class InternshipAddForm extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e){
                 if (e.getButton() == 1){
-                    System.exit(0);
+                    InternshipAddForm.this.dispose();
                 }
             }
             
@@ -97,10 +104,17 @@ public class InternshipAddForm extends javax.swing.JPanel {
         buttonPanel.add(close, "cell 1 0, align left");
         
         
-        add(titlePanel, "dock north, growx, shrinkx"); //adding title panel to the main frame
-        add(contentPanel, "dock center"); //adding content panel to the main frame
-        add(buttonPanel, "dock south"); //adding the button paenl to the main frame
-                
+        panel.add(titlePanel, "dock north, growx, shrinkx"); //adding title panel to the main frame
+        panel.add(contentPanel, "dock center"); //adding content panel to the main frame
+        panel.add(buttonPanel, "dock south"); //adding the button paenl to the main frame
+        
+        add(panel, "grow");
+        
+        
+        setSize(600, 400);
+        setLocationRelativeTo(this.dash);
+        setUndecorated(true);
+        setVisible(true);        
         
     }
 

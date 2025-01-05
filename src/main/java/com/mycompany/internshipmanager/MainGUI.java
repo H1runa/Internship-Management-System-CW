@@ -6,7 +6,7 @@ import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.employer_views.EmployerAddForm;
 import com.mycompany.internshipmanager.employer_views.EmployerListView;
 import com.mycompany.internshipmanager.employer_views.EmployerUpdateForm;
-import com.mycompany.internshipmanager.views.internship.InternshipAddForm;
+import com.mycompany.internshipmanager.emp_dashboard.InternshipAddForm;
 import net.miginfocom.swing.MigLayout;
 
 public class MainGUI extends javax.swing.JFrame {
@@ -16,8 +16,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         
-        EmployerController c = new EmployerController();
-        LoggedEmployer.getInstance().setEmployer(c.getEmployerByID(1));
+        
         
         initComponents();
         setSize(600, 400);
@@ -27,9 +26,9 @@ public class MainGUI extends javax.swing.JFrame {
 //        add(list, "dock north, span");
 //        NavHistory.get().push(list); //adding to nav
         
-        InternshipAddForm addForm = new InternshipAddForm();
-        add(addForm, "dock north, span");
-        NavHistory.get().push(addForm);
+//        InternshipAddForm addForm = new InternshipAddForm();
+//        add(addForm, "dock north, span");
+//        NavHistory.get().push(addForm);
 
 //        EmployerUpdateForm upForm = new EmployerUpdateForm();
 //        add(upForm, "dock north, span");

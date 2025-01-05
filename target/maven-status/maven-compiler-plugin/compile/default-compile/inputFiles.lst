@@ -7,6 +7,7 @@ C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\inter
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\Student.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\student_views\StudentDetails.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\controllers\StudentController.java
+C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\emp_dashboard\emp_dashboard.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\employer_views\EmployerItemPanel.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\controllers\ApplicationController.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\controllers\PlacementController.java
@@ -14,8 +15,8 @@ C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\inter
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\controllers\InternshipController.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\Employer.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\employer_views\EmployerAddForm.java
-C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\views\internship\InternshipAddForm.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\StudentDAO.java
+C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\emp_dashboard\InternshipAddForm.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\student_views\mig_test.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\custom_ui\BackButton.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\Application.java
@@ -31,6 +32,7 @@ C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\inter
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\Placement.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\student_views\StudentUpdateForm.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\employer_views\EmployerListView.java
+C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\emp_dashboard\empItemPanel.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\models\ApplicationDAO.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\LoggedStudent.java
 C:\Users\Asus\Desktop\EAD_CW\InternshipManager\src\main\java\com\mycompany\internshipmanager\student_views\StudentListView.java
