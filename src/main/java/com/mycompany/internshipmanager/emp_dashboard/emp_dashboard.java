@@ -50,9 +50,9 @@ public class emp_dashboard extends javax.swing.JFrame {
 
         background_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         title.setText("Employer Dashboard");
-        background_panel.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 254, 43));
+        background_panel.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 360, 43));
 
         scrollpane.setViewportView(itemList_panel);
 

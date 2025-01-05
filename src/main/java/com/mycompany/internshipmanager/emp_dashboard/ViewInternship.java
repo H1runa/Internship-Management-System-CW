@@ -1,62 +1,51 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
-import com.mycompany.internshipmanager.LoggedEmployer;
-import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.controllers.PlacementController;
 import com.mycompany.internshipmanager.controllers.StudentController;
-import com.mycompany.internshipmanager.models.Application;
 import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.BorderLayout;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author Asus
  */
-public class ViewApplication extends javax.swing.JDialog {
+public class ViewInternship extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ViewApplication
-     */
-    private ApplicationController appl_control;
-    private Application appl;
-    private StudentController stdControl;
-    private Student std;
-    private InternshipController iControl;
-    private Internship intern;
-    private ViewApplicationsList dialog;
+    private ViewInternshipsList dialog;
     private PlacementController plaControl;
-    private Placement pla;
+    private StudentController stdControl;
+    private InternshipController internControl;
     private JPanel panel;
+    private Placement placement;
+    private String type;
     
-    public ViewApplication(ViewApplicationsList dia, int appl_id) {
-        super(dia, "ViewApplication", true);
-        this.dialog = dia;        
-        this.appl_control = new ApplicationController();
-        this.appl = appl_control.getApplicationByID(appl_id);
+    
+    public ViewInternship(ViewInternshipsList dia, int pla_id, String type) {
+        super(dia, "View Internship", true);
+        this.type = type;
+        this.dialog = dia;
         this.plaControl = new PlacementController();
-        
-        initComponents();
-        
+        this.placement = plaControl.getPlacementByID(pla_id);
+        initComponents();        
         init();
+        
     }
     
     private void init(){
+        this.plaControl = new PlacementController();
         this.stdControl = new StudentController();
-        this.std = stdControl.getStudentByID(appl.getStu_id());
-        this.iControl = new InternshipController();
-        this.intern = iControl.getInternshipByID(appl.getInternship_id());        
+        this.internControl = new InternshipController();
+        
+        Student std = stdControl.getStudentByID(placement.getStd_id());
+        Internship intern = internControl.getInternshipByID(placement.getInternship_id());
         
         setLayout(new MigLayout("fill")); //layout
         
@@ -71,7 +60,7 @@ public class ViewApplication extends javax.swing.JDialog {
         titlePanel.add(title, "cell 1 0, align center");
         
         JPanel namePanel = new JPanel(new BorderLayout());        
-        namePanel.setBorder(BorderFactory.createTitledBorder("Full Name"));        
+        namePanel.setBorder(BorderFactory.createTitledBorder("Student Name"));        
         JLabel name = new JLabel(std.getFirst_name() + " " + std.getLast_name());
         namePanel.add(name, BorderLayout.CENTER);
         contentPanel.add(namePanel, "growx, shrinkx");
@@ -83,62 +72,62 @@ public class ViewApplication extends javax.swing.JDialog {
         contentPanel.add(internshipPanel, "growx, shrinkx");
         
         JPanel datePanel = new JPanel(new BorderLayout());        
-        datePanel.setBorder(BorderFactory.createTitledBorder("Date Submitted"));        
-        JLabel date = new JLabel(appl.getDate());
+        datePanel.setBorder(BorderFactory.createTitledBorder("Start Date"));        
+        JLabel date = new JLabel(placement.getStart_date());
         datePanel.add(date, BorderLayout.CENTER);
         contentPanel.add(datePanel, "growx, shrinkx");
         
         JPanel resumePanel = new JPanel(new BorderLayout());        
-        resumePanel.setBorder(BorderFactory.createTitledBorder("Link to Resume"));        
-        JLabel resume = new JLabel(appl.getResume());
-        resumePanel.add(resume, BorderLayout.CENTER);
+        resumePanel.setBorder(BorderFactory.createTitledBorder("End Date"));        
+        JLabel end_date = new JLabel(placement.getEnd_date());
+        resumePanel.add(end_date, BorderLayout.CENTER);
         contentPanel.add(resumePanel, "growx, shrinkx");
         
         JPanel statusPanel = new JPanel(new BorderLayout());        
         statusPanel.setBorder(BorderFactory.createTitledBorder("status"));        
-        JLabel status = new JLabel(appl.getStatus());
+        JLabel status = new JLabel(placement.getStatus());
         statusPanel.add(status, BorderLayout.CENTER);
         contentPanel.add(statusPanel, "growx, shrinkx");
         
+        JPanel feedbackPanel = new JPanel(new BorderLayout());        
+        feedbackPanel.setBorder(BorderFactory.createTitledBorder("Feedback"));        
+        JLabel feedback = new JLabel(placement.getFeedback());
+        feedbackPanel.add(feedback, BorderLayout.CENTER);
+        contentPanel.add(feedbackPanel, "growx, shrinkx");
+        
         //buttons
-        JButton accept = new JButton("Accept"){{
+        JButton cancel = new JButton("Cancel Internship"){{
             addActionListener(e -> {
-                appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Accepted");                
-                dialog.loadApplicationItems();
-                
-                LocalDate today = LocalDate.now();
-                LocalDate end_date = today.plusMonths(intern.getDuration());
-                
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String string_today = formatter.format(today);
-                String string_end_date = formatter.format(end_date);
-                
-                plaControl.addPlacement(String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), String.valueOf(LoggedEmployer.getInstance().getEmployer().getEmp_id()), "Ongoing", string_today, string_end_date, "");
-                
-                ViewApplication.this.dispose();
+                plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Cancelled" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
+                dialog.loadApplicationItems();                                                
+                ViewInternship.this.dispose();
                 
                 
             });
         }};
-        JButton reject = new JButton("Reject"){{
+        
+        JButton uncancel = new JButton("Renew Internship"){{
             addActionListener(e -> {
-                appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Rejected");                
-                dialog.loadApplicationItems();
-                ViewApplication.this.dispose();
+                plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Ongoing" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
+                dialog.loadApplicationItems();                                                
+                ViewInternship.this.dispose();
+                
                 
             });
         }};
         
         JButton close = new JButton("Close"){{
             addActionListener(e-> {
-                ViewApplication.this.dispose();
+                ViewInternship.this.dispose();
             });
         }};
                 
         
-        
-        buttonPanel.add(accept, "cell 0 0, align right");
-        buttonPanel.add(reject, "cell 1 0, align center");
+        if (type.equals("Ongoing")){
+            buttonPanel.add(cancel, "cell 0 0, align right");        
+        } else if (type.equals("Cancelled")){
+            buttonPanel.add(uncancel, "cell 0 0, align right");
+        }
         buttonPanel.add(close, "cell 2 0, align left");
         
         

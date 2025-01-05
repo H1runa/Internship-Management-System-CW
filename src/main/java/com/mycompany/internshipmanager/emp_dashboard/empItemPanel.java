@@ -69,6 +69,8 @@ public class empItemPanel extends javax.swing.JPanel {
         JMenuItem update = new JMenuItem("Update");
         JMenuItem delete = new JMenuItem("Delete");
         JMenuItem view_appl = new JMenuItem("View Applications");
+        JMenuItem view_ongoing = new JMenuItem("View Ongoing Internships");
+        JMenuItem view_cancelled = new JMenuItem("View Cancelled Internships");
         
         update.addActionListener(e->{
             dash.gp.setVisible(true);
@@ -106,7 +108,35 @@ public class empItemPanel extends javax.swing.JPanel {
             }};
         });
         
-        contextmenu.add(update); contextmenu.add(delete); contextmenu.add(view_appl);
+        view_ongoing.addActionListener(e->{
+            dash.gp.setVisible(true);
+            new ViewInternshipsList(dash, id, "Ongoing"){{
+                addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        super.windowClosed(e);
+                        dash.gp.setVisible(false);
+                    }
+                    
+                });
+            }};
+        });
+        view_cancelled.addActionListener(e -> {
+            dash.gp.setVisible(true);
+            new ViewInternshipsList(dash, id, "Cancelled"){{
+                addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        super.windowClosed(e);
+                        dash.gp.setVisible(false);
+                    }
+                    
+                });
+            }};
+        });
+        
+        contextmenu.add(update); contextmenu.add(delete); contextmenu.add(view_appl); contextmenu.add(view_ongoing);
+        contextmenu.add(view_cancelled);
         
         addMouseListener(new MouseAdapter(){
             @Override
