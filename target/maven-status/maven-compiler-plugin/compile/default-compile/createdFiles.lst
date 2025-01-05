@@ -1,4 +1,5 @@
 com\mycompany\internshipmanager\student_views\StudentItemPanel$1.class
+com\mycompany\internshipmanager\emp_dashboard\InternshipUpdateForm$2.class
 com\mycompany\internshipmanager\models\Placement.class
 com\mycompany\internshipmanager\emp_dashboard\empItemPanel.class
 com\mycompany\internshipmanager\MainGUI.class
@@ -21,6 +22,7 @@ com\mycompany\internshipmanager\student_views\StudentItemContainer.class
 com\mycompany\internshipmanager\LoggedEmployer.class
 com\mycompany\internshipmanager\models\EmployerDAO.class
 com\mycompany\internshipmanager\models\Internship.class
+com\mycompany\internshipmanager\emp_dashboard\InternshipUpdateForm$1.class
 com\mycompany\internshipmanager\models\Student.class
 com\mycompany\internshipmanager\employer_views\EmployerUpdateForm$1.class
 com\mycompany\internshipmanager\models\ApplicationDAO.class
@@ -45,7 +47,9 @@ com\mycompany\internshipmanager\custom_ui\BackButton.class
 com\mycompany\internshipmanager\models\PlacementDAO.class
 com\mycompany\internshipmanager\employer_views\EmployerItemPanel.class
 com\mycompany\internshipmanager\employer_views\EmployerListView.class
+com\mycompany\internshipmanager\emp_dashboard\InternshipUpdateForm.class
 com\mycompany\internshipmanager\student_views\StudentListView.class
+com\mycompany\internshipmanager\emp_dashboard\empItemPanel$1.class
 com\mycompany\internshipmanager\models\InternshipDAO.class
 com\mycompany\internshipmanager\student_views\StudentItemPanel.class
 com\mycompany\internshipmanager\controllers\PlacementController.class

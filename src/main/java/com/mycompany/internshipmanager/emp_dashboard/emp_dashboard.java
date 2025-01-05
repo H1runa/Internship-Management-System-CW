@@ -116,7 +116,7 @@ public class emp_dashboard extends javax.swing.JFrame {
         itemList_panel.removeAll();
         List<Internship> list = c.getInternships();
         for (Internship i:list){
-            empItemPanel item = new empItemPanel(i.getTitle(), i.getDuration(), i.getStatus());
+            empItemPanel item = new empItemPanel(i.getId(), i.getTitle(), i.getDuration(), i.getStatus());
             itemList_panel.add(item);
         }
         

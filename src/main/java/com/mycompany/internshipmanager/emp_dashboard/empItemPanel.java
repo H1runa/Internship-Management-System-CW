@@ -5,8 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -18,7 +24,7 @@ public class empItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form empItemPanel
      */
-    public empItemPanel(String t, int d, String s) {
+    public empItemPanel(int id, String t, int d, String s) {
         initComponents();
         
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
@@ -47,6 +53,30 @@ public class empItemPanel extends javax.swing.JPanel {
         add(duration, "cell 1 0 , align center");
         add(status, "cell 2 0, align center");
         
+        
+        //adding the context menu
+        JPopupMenu contextmenu = new JPopupMenu();
+        
+        JMenuItem update = new JMenuItem("Update");
+        JMenuItem delete = new JMenuItem("Delete");
+        JMenuItem view_appl = new JMenuItem("View Applications");
+        
+        update.addActionListener(e->{
+            new InternshipUpdateForm((emp_dashboard)(JFrame)SwingUtilities.getWindowAncestor(empItemPanel.this), id);
+        });
+        
+        contextmenu.add(update); contextmenu.add(delete); contextmenu.add(view_appl);
+        
+        addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(e.getButton() == 3){                    
+                    super.mousePressed(e); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                    contextmenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+            
+        });
     }
 
     @Override
