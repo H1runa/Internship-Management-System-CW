@@ -1,5 +1,6 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
+import com.mycompany.internshipmanager.controllers.InternshipController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,10 +8,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
@@ -24,8 +29,12 @@ public class empItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form empItemPanel
      */
-    public empItemPanel(int id, String t, int d, String s) {
+    private emp_dashboard dash;
+    
+    public empItemPanel(int id, String t, int d, String s, emp_dashboard dash) {
         initComponents();
+        
+        this.dash = dash;
         
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
         
@@ -62,7 +71,39 @@ public class empItemPanel extends javax.swing.JPanel {
         JMenuItem view_appl = new JMenuItem("View Applications");
         
         update.addActionListener(e->{
-            new InternshipUpdateForm((emp_dashboard)(JFrame)SwingUtilities.getWindowAncestor(empItemPanel.this), id);
+            dash.gp.setVisible(true);
+            new InternshipUpdateForm(dash, id){{addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    super.windowClosed(e);
+                    dash.gp.setVisible(false); //hiding the glass pane once the jdialog is closed
+                }
+                
+            });}};
+        });
+        
+        delete.addActionListener(e-> {            
+            InternshipController control = new InternshipController();
+            try{
+                control.deleteInternship(id);
+                dash.updateInternshipList();
+            } catch(SQLException ex){
+                JOptionPane.showMessageDialog(this, "Record could not be deleted", "Database Error", JOptionPane.ERROR_MESSAGE);
+                }
+        });
+        
+        view_appl.addActionListener(e-> {
+            dash.gp.setVisible(true);
+            new ViewApplicationsList("Dialog", true, id, dash){{
+                addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent e) {   
+                        super.windowClosed(e);
+                        dash.gp.setVisible(false);
+                    }
+                    
+                });
+            }};
         });
         
         contextmenu.add(update); contextmenu.add(delete); contextmenu.add(view_appl);

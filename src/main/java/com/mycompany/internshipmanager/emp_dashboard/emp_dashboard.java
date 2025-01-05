@@ -1,7 +1,10 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
 import com.mycompany.internshipmanager.controllers.InternshipController;
+import com.mycompany.internshipmanager.custom_ui.GlassPane;
 import com.mycompany.internshipmanager.models.Internship;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
@@ -17,6 +20,7 @@ public class emp_dashboard extends javax.swing.JFrame {
      
      */
     private InternshipController c = new InternshipController();
+    public GlassPane gp;
             
     
     public emp_dashboard() {
@@ -108,15 +112,27 @@ public class emp_dashboard extends javax.swing.JFrame {
         
         //setting up add button
         addButton.addActionListener(e -> {
-            new InternshipAddForm(emp_dashboard.this);
+            gp.setVisible(true);
+            new InternshipAddForm(emp_dashboard.this){{addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    super.windowClosed(e);
+                    gp.setVisible(false);
+                }
+                
+            });}};
         });
+        
+        //setting up glass pane
+        gp = new GlassPane(this);
+        setGlassPane(gp); gp.setVisible(false);
     }
     
     public void updateInternshipList(){
         itemList_panel.removeAll();
         List<Internship> list = c.getInternships();
         for (Internship i:list){
-            empItemPanel item = new empItemPanel(i.getId(), i.getTitle(), i.getDuration(), i.getStatus());
+            empItemPanel item = new empItemPanel(i.getId(), i.getTitle(), i.getDuration(), i.getStatus(), emp_dashboard.this);
             itemList_panel.add(item);
         }
         

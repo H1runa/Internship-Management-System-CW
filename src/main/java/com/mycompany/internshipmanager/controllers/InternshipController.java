@@ -4,6 +4,7 @@ import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.InternshipDAO;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class InternshipController {
     private InternshipDAO dao;
@@ -128,13 +129,11 @@ public class InternshipController {
         
     }
     
-    public void deleteInternship(int id) {
-        try{
-            dao.deleteInternship(id);
+    public void deleteInternship(int id) throws SQLException {
+        
+        dao.deleteInternship(id);
             
-        } catch (SQLException ex){
-            System.out.println("Internship could not be deleted. \nError: "+ ex.getMessage());
-        }
+        
     }
     
     public void deleteAll(){
