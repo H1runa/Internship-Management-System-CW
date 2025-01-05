@@ -28,8 +28,9 @@ public class ViewApplicationsList extends javax.swing.JDialog {
     /**
      * Creates new form ViewApplicationsList
      */
-    private int id;
+    private int id; //employer id
     private emp_dashboard dash;
+    private JPanel panel;
     
     public ViewApplicationsList(String title, boolean modal, int id, emp_dashboard dash) {
         super(dash, title, modal);
@@ -60,21 +61,38 @@ public class ViewApplicationsList extends javax.swing.JDialog {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void init(){
+    public void init(){
         
         setLayout(new MigLayout("fill"));
         
         JScrollPane scrollpane = new JScrollPane();        
-        JPanel panel = new JPanel(new MigLayout("fillx, flowy"));
+        panel = new JPanel(new MigLayout("fillx, flowy"));
         JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[33%][33%][33%]", "[]"));
         scrollpane.setBorder(BorderFactory.createTitledBorder("Select Application"));
+                        
+        loadApplicationItems(); //loads in the application item for the selected internship
         
+        JButton close = new JButton("Close"){{addActionListener(e -> { //adding action listener to close button
+            ViewApplicationsList.this.dispose();        });}}; 
         
-        Dimension itemPanelSize = new Dimension(560,50);
+        buttonPanel.add(close, "cell 1 0, align center");
         
+        add(buttonPanel, "dock south");
         
-        
+        scrollpane.setViewportView(panel);
+        scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        add(scrollpane, "dock center");
+        setSize(600, 400);
+        setLocationRelativeTo(this.dash);
+        setUndecorated(true);
+        setVisible(true);  
+    }
+    
+    public void loadApplicationItems(){        
         //loading the items
+        panel.removeAll();
+        Dimension itemPanelSize = new Dimension(560,50);
         ApplicationController applControl = new ApplicationController();
         StudentController stdControl = new StudentController();
         List<Application> applList = applControl.getApplications();
@@ -104,7 +122,7 @@ public class ViewApplicationsList extends javax.swing.JDialog {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
-                        //CODE FOR VIEWING APPLICATION
+                        new ViewApplication(ViewApplicationsList.this, appl.getApplication_id());
                     }
                     
                     
@@ -118,22 +136,8 @@ public class ViewApplicationsList extends javax.swing.JDialog {
                 panel.add(itemPanel);
             }
         }
-        
-        JButton close = new JButton("Close"){{addActionListener(e -> { //adding action listener to close button
-            ViewApplicationsList.this.dispose();        });}}; 
-        
-        buttonPanel.add(close, "cell 1 0, align center");
-        
-        add(buttonPanel, "dock south");
-        
-        scrollpane.setViewportView(panel);
-        scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        add(scrollpane, "dock center");
-        setSize(600, 400);
-        setLocationRelativeTo(this.dash);
-        setUndecorated(true);
-        setVisible(true);  
+        revalidate();
+        repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
