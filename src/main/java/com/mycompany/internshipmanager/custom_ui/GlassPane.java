@@ -3,6 +3,7 @@ package com.mycompany.internshipmanager.custom_ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Window;
 import javax.swing.JFrame;
 
 /**
@@ -14,9 +15,9 @@ public class GlassPane extends javax.swing.JPanel {
     /**
      * Creates new form GlassPane
      */
-    private JFrame fr;
+    private Window fr;
     
-    public GlassPane(JFrame fr) {
+    public GlassPane(Window fr) {
         this.fr = fr;
         initComponents();
         

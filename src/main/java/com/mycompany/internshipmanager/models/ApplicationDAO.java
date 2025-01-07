@@ -92,7 +92,7 @@ public class ApplicationDAO {
     }
     
     public void deleteApplication(int id) throws SQLException{
-        String query = "DELETE FROM Applications WHERE appl_id = ?";
+        String query = "DELETE FROM Applications WHERE application_id = ?";
         
         try(PreparedStatement prp = conn.prepareStatement(query)){
             prp.setInt(1, id);
