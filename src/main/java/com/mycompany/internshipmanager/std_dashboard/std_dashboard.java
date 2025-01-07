@@ -11,6 +11,7 @@ import com.mycompany.internshipmanager.models.Application;
 import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
 import java.util.List;
+import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -39,7 +40,7 @@ public class std_dashboard extends javax.swing.JFrame {
         this.gp = new GlassPane(this); //setting up the glass pane
         setGlassPane(gp); gp.setVisible(false);
         
-        internshipPane.setLayout(new MigLayout("fillx, flowy"));
+        internshipPane.setLayout(new MigLayout("fillx, flowy, debug"));        
         applicationPane.setLayout(new MigLayout("fillx, flowy"));
         findPane.setLayout(new MigLayout("fillx, flowy"));
         loadPlacements();
@@ -48,16 +49,17 @@ public class std_dashboard extends javax.swing.JFrame {
         
     }
     
-    public void loadPlacements(){
+    public void loadPlacements(){                
         internshipPane.removeAll();
         List<Placement> plaList = plaControl.getPlacements();
         for (Placement p: plaList){
             if(p.getStd_id() == logged_std){
-                internshipPane.add(new PlacementItem(empControl.getEmployerByID(p.getEmp_id()), internControl.getInternshipByID(p.getInternship_id()), p));                
+                internshipPane.add(new PlacementItem(empControl.getEmployerByID(p.getEmp_id()), internControl.getInternshipByID(p.getInternship_id()), p, std_dashboard.this));                
 //                System.out.println("added");
             }
         }
         revalidate(); repaint();
+        
     }
     
     public void loadApplications(){
@@ -73,7 +75,7 @@ public class std_dashboard extends javax.swing.JFrame {
     
     
     public void loadInternships(){
-        internshipPane.removeAll();
+        findPane.removeAll();
         List<Internship> internList = internControl.getInternships();
         for (Internship i : internList){
             if (i.getStatus().equals("Open")){
@@ -95,13 +97,12 @@ public class std_dashboard extends javax.swing.JFrame {
         background_panel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
-        myInternships = new javax.swing.JPanel();
-        internshipScroll = new javax.swing.JScrollPane();
-        internshipPane = new javax.swing.JPanel();
         applicationScoll = new javax.swing.JScrollPane();
         applicationPane = new javax.swing.JPanel();
         findScroll = new javax.swing.JScrollPane();
         findPane = new javax.swing.JPanel();
+        myInternships = new javax.swing.JScrollPane();
+        internshipPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -112,17 +113,6 @@ public class std_dashboard extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         title.setText("Student Dashboard");
         background_panel.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 330, 70));
-
-        myInternships.setLayout(new java.awt.BorderLayout());
-
-        internshipScroll.setViewportView(internshipPane);
-
-        internshipPane.setLayout(new javax.swing.BoxLayout(internshipPane, javax.swing.BoxLayout.LINE_AXIS));
-        internshipScroll.setViewportView(internshipPane);
-
-        myInternships.add(internshipScroll, java.awt.BorderLayout.CENTER);
-
-        tabbedPane.addTab("My Internships", myInternships);
 
         javax.swing.GroupLayout applicationPaneLayout = new javax.swing.GroupLayout(applicationPane);
         applicationPane.setLayout(applicationPaneLayout);
@@ -154,6 +144,23 @@ public class std_dashboard extends javax.swing.JFrame {
 
         tabbedPane.addTab("Find Internships", findScroll);
 
+        myInternships.setViewportView(internshipPane);
+
+        javax.swing.GroupLayout internshipPaneLayout = new javax.swing.GroupLayout(internshipPane);
+        internshipPane.setLayout(internshipPaneLayout);
+        internshipPaneLayout.setHorizontalGroup(
+            internshipPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 624, Short.MAX_VALUE)
+        );
+        internshipPaneLayout.setVerticalGroup(
+            internshipPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 269, Short.MAX_VALUE)
+        );
+
+        myInternships.setViewportView(internshipPane);
+
+        tabbedPane.addTab("My Internships", myInternships);
+
         background_panel.add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 630, 310));
 
         getContentPane().add(background_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 500));
@@ -173,8 +180,7 @@ public class std_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel findPane;
     private javax.swing.JScrollPane findScroll;
     private javax.swing.JPanel internshipPane;
-    private javax.swing.JScrollPane internshipScroll;
-    private javax.swing.JPanel myInternships;
+    private javax.swing.JScrollPane myInternships;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

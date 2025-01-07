@@ -4,7 +4,10 @@ import com.mycompany.internshipmanager.controllers.EmployerController;
 import com.mycompany.internshipmanager.custom_ui.GlassPane;
 import com.mycompany.internshipmanager.models.Employer;
 import com.mycompany.internshipmanager.models.Internship;
+import java.awt.Color;
 import java.awt.Frame;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -55,6 +58,30 @@ public class ViewInternship extends javax.swing.JDialog {
            new ApplicationForm(this, parent.logged_std, intern.getId()).setVisible(true);     
            
        });
+       
+       empPanel.setBackground(Color.decode("#484848"));
+       empPanel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                new ViewEmployer(intern.getEmp_id(), ViewInternship.this).setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                empPanel.setBackground(Color.decode("#585858"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                empPanel.setBackground(Color.decode("#484848"));
+            }
+
+
+
+        });
         
         setLocationRelativeTo(parent);
                 
@@ -90,7 +117,7 @@ public class ViewInternship extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         descScroll = new javax.swing.JScrollPane();
         descLabel = new javax.swing.JTextPane();
-        jPanel3 = new javax.swing.JPanel();
+        empPanel = new javax.swing.JPanel();
         empLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         durationLabel = new javax.swing.JLabel();
@@ -108,13 +135,14 @@ public class ViewInternship extends javax.swing.JDialog {
 
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Internship");
-        panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 170, 62));
+        panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 190, 62));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Title", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Title");
         jPanel1.add(titleLabel, java.awt.BorderLayout.CENTER);
@@ -125,6 +153,7 @@ public class ViewInternship extends javax.swing.JDialog {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         descLabel.setEditable(false);
+        descLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         descLabel.setFocusable(false);
         descLabel.setHighlighter(null);
         descScroll.setViewportView(descLabel);
@@ -133,18 +162,20 @@ public class ViewInternship extends javax.swing.JDialog {
 
         panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 580, 160));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        empPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        empPanel.setLayout(new java.awt.BorderLayout());
 
+        empLabel.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         empLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         empLabel.setText("Employer");
-        jPanel3.add(empLabel, java.awt.BorderLayout.CENTER);
+        empPanel.add(empLabel, java.awt.BorderLayout.CENTER);
 
-        panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 580, 70));
+        panel.add(empPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 580, 70));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duration in Months", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
+        durationLabel.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         durationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         durationLabel.setText("Duration");
         jPanel4.add(durationLabel, java.awt.BorderLayout.CENTER);
@@ -154,6 +185,7 @@ public class ViewInternship extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
+        statusLabel.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         statusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         statusLabel.setText("Status");
         jPanel5.add(statusLabel, java.awt.BorderLayout.CENTER);
@@ -162,11 +194,19 @@ public class ViewInternship extends javax.swing.JDialog {
 
         buttonPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        applyButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         applyButton.setText("Apply");
-        buttonPanel.add(applyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+        applyButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        applyButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        applyButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        buttonPanel.add(applyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 7, 100, 50));
 
+        closeButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         closeButton.setText("Close");
-        buttonPanel.add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        closeButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        closeButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        closeButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        buttonPanel.add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 7, 90, 50));
 
         panel.add(buttonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 580, 60));
 
@@ -188,10 +228,10 @@ public class ViewInternship extends javax.swing.JDialog {
     private javax.swing.JScrollPane descScroll;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JLabel empLabel;
+    private javax.swing.JPanel empPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel panel;

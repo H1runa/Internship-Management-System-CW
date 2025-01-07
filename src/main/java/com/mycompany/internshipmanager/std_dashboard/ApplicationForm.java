@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +57,7 @@ public class ApplicationForm extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,21 +71,29 @@ public class ApplicationForm extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        submitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         submitButton.setText("Submit");
+        submitButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        submitButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        submitButton.setPreferredSize(new java.awt.Dimension(80, 30));
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+        jPanel1.add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 100, 50));
 
+        cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelButton.setText("Cancel");
+        cancelButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        cancelButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        cancelButton.setPreferredSize(new java.awt.Dimension(80, 30));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        jPanel1.add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 100, 50));
 
         panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 450, 50));
 
@@ -93,8 +103,22 @@ public class ApplicationForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        applControl.addApplication(String.valueOf(stdid), String.valueOf(internid), today , linkField.getText(), "To be reviewed");
-        ApplicationForm.this.dispose();
+        int confirm = JOptionPane.showOptionDialog(
+            ApplicationForm.this, 
+            "Your application has been submitted.", 
+            "Submission Successful", 
+            JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.INFORMATION_MESSAGE, 
+            null, 
+            new Object[] {"OK"}, 
+            "OK" 
+        );
+        
+        if (confirm == JOptionPane.OK_OPTION){        
+            applControl.addApplication(String.valueOf(stdid), String.valueOf(internid), today , linkField.getText(), "To be reviewed");
+            ApplicationForm.this.dispose();
+            parent.dispose();
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

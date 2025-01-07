@@ -8,11 +8,13 @@ import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -29,9 +31,9 @@ public class InternshipItem extends javax.swing.JPanel {
     public InternshipItem(Internship intern, std_dashboard dash) {
         initComponents();
         
-        Dimension itemPanelSize = new Dimension(600,50);
+        Dimension itemPanelSize = new Dimension(608,50);
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         setPreferredSize(itemPanelSize);
         setMinimumSize(itemPanelSize);
         setMaximumSize(itemPanelSize);
@@ -61,9 +63,16 @@ public class InternshipItem extends javax.swing.JPanel {
 
         });
         
-        add(new JLabel(intern.getTitle()){{setForeground(Color.black);}}, "cell 0 0");
-        add(new JLabel("Duration: "+String.valueOf(intern.getDuration())){{setForeground(Color.black);}}, "cell 1 0");
-        add(new JLabel(intern.getStatus()){{setForeground(Color.black);}}, "cell 2 0");
+        add(new JLabel(intern.getTitle()){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 0 0");
+        add(new JLabel("Duration: "+String.valueOf(intern.getDuration())){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
+        add(new JLabel(intern.getStatus()){{
+            if (intern.getStatus().equals("Open")){
+                setForeground(Color.green);
+            } else if (intern.getStatus().equals("Closed")){
+                setForeground(Color.red);
+            }
+            setFont(getFont().deriveFont(Font.BOLD, 16f));
+        }}, "cell 2 0");
     }
         
 

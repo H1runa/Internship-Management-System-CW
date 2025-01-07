@@ -2,11 +2,15 @@ com\mycompany\internshipmanager\std_dashboard\ViewApplication$1.class
 com\mycompany\internshipmanager\student_views\StudentItemPanel$1.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternshipsList$2.class
 com\mycompany\internshipmanager\models\Placement.class
+com\mycompany\internshipmanager\std_dashboard\ViewEmployer$1.class
 com\mycompany\internshipmanager\MainGUI.class
 com\mycompany\internshipmanager\emp_dashboard\empItemPanel$5.class
+com\mycompany\internshipmanager\std_dashboard\ViewPlacement$2.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternshipsList$5.class
+com\mycompany\internshipmanager\std_dashboard\ViewApplication$4.class
 com\mycompany\internshipmanager\emp_dashboard\emp_dashboard$1.class
 com\mycompany\internshipmanager\emp_dashboard\empItemPanel$2.class
+com\mycompany\internshipmanager\std_dashboard\ViewInternship$2.class
 com\mycompany\internshipmanager\custom_ui\BackButton$1.class
 com\mycompany\internshipmanager\emp_dashboard\InternshipAddForm$2.class
 com\mycompany\internshipmanager\emp_dashboard\ViewApplication$3.class
@@ -24,10 +28,12 @@ com\mycompany\internshipmanager\std_dashboard\ApplicationForm.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternshipsList.class
 com\mycompany\internshipmanager\models\ApplicationDAO.class
 com\mycompany\internshipmanager\std_dashboard\ApplicationItem$1.class
+com\mycompany\internshipmanager\std_dashboard\ViewEmployer.class
 com\mycompany\internshipmanager\controllers\ApplicationController.class
 com\mycompany\internshipmanager\student_views\StudentUpdateForm$1.class
 com\mycompany\internshipmanager\std_dashboard\std_dashboard.class
 com\mycompany\internshipmanager\emp_dashboard\InternshipAddForm.class
+com\mycompany\internshipmanager\std_dashboard\ViewEmployer$3.class
 com\mycompany\internshipmanager\employer_views\EmployerAddForm$2.class
 com\mycompany\internshipmanager\DBConnection.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternshipsList$4.class
@@ -44,6 +50,7 @@ com\mycompany\internshipmanager\employer_views\EmployerItemPanel.class
 com\mycompany\internshipmanager\std_dashboard\ViewApplication$2.class
 com\mycompany\internshipmanager\employer_views\EmployerListView.class
 com\mycompany\internshipmanager\std_dashboard\ApplicationItem$3.class
+com\mycompany\internshipmanager\std_dashboard\ViewPlacement.class
 com\mycompany\internshipmanager\std_dashboard\PlacementItem$4.class
 com\mycompany\internshipmanager\emp_dashboard\InternshipUpdateForm.class
 com\mycompany\internshipmanager\emp_dashboard\ViewApplication.class
@@ -69,7 +76,9 @@ com\mycompany\internshipmanager\emp_dashboard\ViewApplicationsList$5.class
 com\mycompany\internshipmanager\emp_dashboard\ViewApplicationsList.class
 com\mycompany\internshipmanager\std_dashboard\PlacementItem$2.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternshipsList$3.class
+com\mycompany\internshipmanager\std_dashboard\ViewEmployer$2.class
 com\mycompany\internshipmanager\controllers\EmployerController.class
+com\mycompany\internshipmanager\std_dashboard\ViewPlacement$1.class
 com\mycompany\internshipmanager\employer_views\EmployerItemContainer.class
 com\mycompany\internshipmanager\emp_dashboard\emp_dashboard.class
 com\mycompany\internshipmanager\controllers\InternshipController.class
@@ -96,6 +105,7 @@ com\mycompany\internshipmanager\emp_dashboard\ViewInternship$3.class
 com\mycompany\internshipmanager\employer_views\EmployerAddForm.class
 com\mycompany\internshipmanager\models\Application.class
 com\mycompany\internshipmanager\std_dashboard\ApplicationForm$1.class
+com\mycompany\internshipmanager\std_dashboard\ViewPlacement$3.class
 com\mycompany\internshipmanager\LoggedStudent.class
 com\mycompany\internshipmanager\custom_ui\GlassPane.class
 com\mycompany\internshipmanager\models\PlacementDAO.class

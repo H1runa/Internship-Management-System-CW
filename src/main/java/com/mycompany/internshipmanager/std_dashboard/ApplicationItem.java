@@ -7,11 +7,13 @@ import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -26,9 +28,10 @@ public class ApplicationItem extends javax.swing.JPanel {
     public ApplicationItem(Internship intern, Application appl, std_dashboard parent) {
         initComponents();
         
-        Dimension itemPanelSize = new Dimension(600,50);
+        Dimension itemPanelSize = new Dimension(608,50);
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+
         setPreferredSize(itemPanelSize);
         setMinimumSize(itemPanelSize);
         setMaximumSize(itemPanelSize);
@@ -58,9 +61,20 @@ public class ApplicationItem extends javax.swing.JPanel {
 
         });
         
-        add(new JLabel(intern.getTitle()){{setForeground(Color.black);}}, "cell 0 0");
-        add(new JLabel(appl.getDate()){{setForeground(Color.black);}}, "cell 1 0");
-        add(new JLabel(appl.getStatus()){{setForeground(Color.black);}}, "cell 2 0");
+        add(new JLabel(intern.getTitle()){{
+            setForeground(Color.black);
+            setFont(getFont().deriveFont(16f));
+        }}, "cell 0 0");
+        add(new JLabel(appl.getDate()){{setForeground(Color.black);setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
+        add(new JLabel(appl.getStatus()){{
+            if (appl.getStatus().equals("To be reviewed")){
+                setForeground(Color.decode("#F4BB44"));
+            } else if (appl.getStatus().equals("Accepted")){
+                setForeground(Color.green);
+            } else if (appl.getStatus().equals("Rejected")){
+                setForeground(Color.red);
+            }
+            setFont(getFont().deriveFont(Font.BOLD, 16f));}}, "cell 2 0");
     }
         
 
