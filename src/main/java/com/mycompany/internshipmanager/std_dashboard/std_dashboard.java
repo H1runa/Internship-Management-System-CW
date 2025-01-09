@@ -1,6 +1,7 @@
 package com.mycompany.internshipmanager.std_dashboard;
 
 import com.mycompany.internshipmanager.DBConnection;
+import com.mycompany.internshipmanager.Login;
 import com.mycompany.internshipmanager.OldReport;
 import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.EmployerController;
@@ -8,9 +9,12 @@ import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.controllers.PlacementController;
 import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.custom_ui.GlassPane;
+import com.mycompany.internshipmanager.emp_dashboard.emp_dashboard;
 import com.mycompany.internshipmanager.models.Application;
 import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +26,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -58,12 +64,29 @@ public class std_dashboard extends javax.swing.JFrame {
         this.gp = new GlassPane(this); //setting up the glass pane
         setGlassPane(gp); gp.setVisible(false);
         
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
         internshipPane.setLayout(new MigLayout("fillx, flowy, debug"));        
         applicationPane.setLayout(new MigLayout("fillx, flowy"));
         findPane.setLayout(new MigLayout("fillx, flowy"));
         loadPlacements();
         loadApplications();
         loadInternships();
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+                 String[] options = {"Exit", "Logout"};                
+                int choice = JOptionPane.showOptionDialog(std_dashboard.this, "What would you like to do?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if (choice == 0){
+                    System.exit(0);
+                } else if(choice == 1){
+                    new Login().setVisible(true);
+                    std_dashboard.this.dispose();                    
+                }
+            }
+            
+        });
         
     }
     
@@ -121,7 +144,6 @@ public class std_dashboard extends javax.swing.JFrame {
         findPane = new javax.swing.JPanel();
         myInternships = new javax.swing.JScrollPane();
         internshipPane = new javax.swing.JPanel();
-        reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -182,24 +204,11 @@ public class std_dashboard extends javax.swing.JFrame {
 
         background_panel.add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 630, 310));
 
-        reportButton.setText("Report");
-        reportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportButtonActionPerformed(evt);
-            }
-        });
-        background_panel.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, -1));
-
         getContentPane().add(background_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 500));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-                
-        new StudentReport(logged_std);                
-    }//GEN-LAST:event_reportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +222,6 @@ public class std_dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane findScroll;
     private javax.swing.JPanel internshipPane;
     private javax.swing.JScrollPane myInternships;
-    private javax.swing.JButton reportButton;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

@@ -8,6 +8,7 @@ import com.mycompany.internshipmanager.models.Student;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JDialog;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -22,9 +23,11 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class StudentReport {
     private int std_id;      
+    private JDialog parent;
     
-    public StudentReport(int id){
+    public StudentReport(int id, JDialog parent){
         this.std_id = id;        
+        this.parent = parent;
         
         generateReport();                
     }
@@ -43,7 +46,15 @@ public class StudentReport {
             //displaying report
             JasperPrint jasPrint = JasperFillManager.fillReport(report, params, DBConnection.getConnection());
             JasperViewer jasView = new JasperViewer(jasPrint, true);
-            jasView.setVisible(true);
+            
+            JDialog frame = new JDialog(parent, true);
+            
+            frame.getContentPane().add(jasView.getContentPane());
+            frame.setSize(1000,800);
+            frame.setLocationRelativeTo(parent);
+            
+            frame.setAlwaysOnTop(true);
+            frame.setVisible(true);
             
             
         } catch (JRException ex){

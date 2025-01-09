@@ -8,6 +8,7 @@ import com.mycompany.internshipmanager.models.Placement;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -105,9 +106,17 @@ public class ViewInternshipsList extends javax.swing.JDialog {
                 
                 Student std = stdControl.getStudentByID(p.getStd_id());
                 Internship intern = internControl.getInternshipByID(p.getInternship_id());
-                itemPanel.add(new JLabel(std.getFirst_name() + " " + std.getLast_name()){{setForeground(Color.black);}}, "cell 0 0");
-                itemPanel.add(new JLabel(intern.getTitle()){{setForeground(Color.black);}}, "cell 1 0");
-                itemPanel.add(new JLabel(p.getStatus()){{setForeground(Color.black);}}, "cell 2 0");
+                itemPanel.add(new JLabel(std.getFirst_name() + " " + std.getLast_name()){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 0 0");
+                itemPanel.add(new JLabel(intern.getTitle()){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 1 0");
+                itemPanel.add(new JLabel(p.getStatus()){{setFont(getFont().deriveFont(Font.PLAIN, 20f));
+                    if(p.getStatus().equals("Ongoing")){
+                        setForeground(Color.green);
+                    } else if (p.getStatus().equals("Cancelled")){
+                        setForeground(Color.red);
+                    } else if (p.getStatus().equals("Finished")){
+                        setForeground(Color.yellow);
+                    }
+                }}, "cell 2 0");
                 panel.add(itemPanel);
             }
         }

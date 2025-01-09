@@ -1,12 +1,20 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
+import com.mycompany.internshipmanager.Login;
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.custom_ui.GlassPane;
 import com.mycompany.internshipmanager.models.Internship;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 
@@ -27,6 +35,7 @@ public class emp_dashboard extends javax.swing.JFrame {
     public emp_dashboard(int id) {
         initComponents();
         init();        
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.empId = id;
         updateInternshipList();
     }        
@@ -45,7 +54,6 @@ public class emp_dashboard extends javax.swing.JFrame {
         scrollpane = new javax.swing.JScrollPane();
         itemList_panel = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
-        reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -61,26 +69,15 @@ public class emp_dashboard extends javax.swing.JFrame {
 
         background_panel.add(scrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 650, 340));
 
+        addButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         addButton.setText("Add");
-        background_panel.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
-
-        reportButton.setText("Report");
-        reportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportButtonActionPerformed(evt);
-            }
-        });
-        background_panel.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
+        background_panel.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 130, 40));
 
         getContentPane().add(background_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 510));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-        new EmployerReport(empId);
-    }//GEN-LAST:event_reportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +88,9 @@ public class emp_dashboard extends javax.swing.JFrame {
         //setting up the internship list view
         itemList_panel.setLayout(new MigLayout("wrap"));
         TitledBorder scrollpaneborder = BorderFactory.createTitledBorder("Internships");
+        Font currentFont = UIManager.getFont("TitledBorder.font");
+        Font newFont = currentFont.deriveFont(18f);
+        scrollpaneborder.setTitleFont(newFont);
         scrollpaneborder.setTitlePosition(TitledBorder.CENTER);
         scrollpaneborder.setTitleJustification(TitledBorder.CENTER);
         scrollpane.setBorder(scrollpaneborder);
@@ -106,6 +106,23 @@ public class emp_dashboard extends javax.swing.JFrame {
                 }
                 
             });}};
+        });
+        
+        //setting up close operations
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                String[] options = {"Exit", "Logout"};                
+                int choice = JOptionPane.showOptionDialog(emp_dashboard.this, "What would you like to do?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if (choice == 0){
+                    System.exit(0);
+                } else if(choice == 1){
+                    new Login().setVisible(true);
+                    emp_dashboard.this.dispose();                    
+                }
+            }
+           
         });
         
         //setting up glass pane
@@ -132,7 +149,6 @@ public class emp_dashboard extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JPanel background_panel;
     private javax.swing.JPanel itemList_panel;
-    private javax.swing.JButton reportButton;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
@@ -41,6 +42,7 @@ public class InternshipAddForm extends javax.swing.JDialog {
         JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[]15[]"));
         
         JLabel title = new JLabel("Create Internship");
+        title.setFont(title.getFont().deriveFont(Font.BOLD, 18f));
 //        BackButton back = new BackButton("<-)", this);
         
 //        titlePanel.add(back, "cell 0 0, align left");

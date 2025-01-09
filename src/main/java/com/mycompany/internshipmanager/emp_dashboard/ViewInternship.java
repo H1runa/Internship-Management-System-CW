@@ -7,6 +7,10 @@ import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -53,7 +57,7 @@ public class ViewInternship extends javax.swing.JDialog {
         
         JPanel titlePanel = new JPanel(new MigLayout("fillx", "[33%][33%][33%]"));
         JPanel contentPanel = new JPanel(new MigLayout("fillx, wrap 1", "[]", "[]15[]"));
-        JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[33%][33%][33%]"));
+        JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[25%][25%][25%][25%]"));
         
         JLabel title = new JLabel("Application");
         
@@ -62,40 +66,68 @@ public class ViewInternship extends javax.swing.JDialog {
         JPanel namePanel = new JPanel(new BorderLayout());        
         namePanel.setBorder(BorderFactory.createTitledBorder("Student Name"));        
         JLabel name = new JLabel(std.getFirst_name() + " " + std.getLast_name());
+        name.setFont(name.getFont().deriveFont(18f));
         namePanel.add(name, BorderLayout.CENTER);
         contentPanel.add(namePanel, "growx, shrinkx");
+        namePanel.setBackground(Color.decode("#484848"));
+        namePanel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                namePanel.setBackground(Color.decode("#585858"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                namePanel.setBackground(Color.decode("#484848"));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                new ViewStudent(ViewInternship.this, std.getStd_id()).setVisible(true);
+            }
+            
+            
+        });
         
         JPanel internshipPanel = new JPanel(new BorderLayout());        
         internshipPanel.setBorder(BorderFactory.createTitledBorder("Internship"));        
         JLabel internship = new JLabel(intern.getTitle());
+        internship.setFont(internship.getFont().deriveFont(18f));
         internshipPanel.add(internship, BorderLayout.CENTER);
         contentPanel.add(internshipPanel, "growx, shrinkx");
         
         JPanel datePanel = new JPanel(new BorderLayout());        
         datePanel.setBorder(BorderFactory.createTitledBorder("Start Date"));        
         JLabel date = new JLabel(placement.getStart_date());
+        date.setFont(date.getFont().deriveFont(18f));
         datePanel.add(date, BorderLayout.CENTER);
         contentPanel.add(datePanel, "growx, shrinkx");
         
         JPanel resumePanel = new JPanel(new BorderLayout());        
         resumePanel.setBorder(BorderFactory.createTitledBorder("End Date"));        
         JLabel end_date = new JLabel(placement.getEnd_date());
+        end_date.setFont(end_date.getFont().deriveFont(18f));
         resumePanel.add(end_date, BorderLayout.CENTER);
         contentPanel.add(resumePanel, "growx, shrinkx");
         
         JPanel statusPanel = new JPanel(new BorderLayout());        
         statusPanel.setBorder(BorderFactory.createTitledBorder("status"));        
         JLabel status = new JLabel(placement.getStatus());
+        status.setFont(status.getFont().deriveFont(18f));
         statusPanel.add(status, BorderLayout.CENTER);
         contentPanel.add(statusPanel, "growx, shrinkx");
         
-        JPanel feedbackPanel = new JPanel(new BorderLayout());        
-        feedbackPanel.setBorder(BorderFactory.createTitledBorder("Feedback"));        
-        JLabel feedback = new JLabel(placement.getFeedback());
-        feedbackPanel.add(feedback, BorderLayout.CENTER);
-        contentPanel.add(feedbackPanel, "growx, shrinkx");
+//        JPanel feedbackPanel = new JPanel(new BorderLayout());        
+//        feedbackPanel.setBorder(BorderFactory.createTitledBorder("Feedback"));        
+//        JLabel feedback = new JLabel(placement.getFeedback());
+//        feedbackPanel.add(feedback, BorderLayout.CENTER);
+//        contentPanel.add(feedbackPanel, "growx, shrinkx");
         
         //buttons
+        Dimension buttonSize = new Dimension(80,30);
         JButton cancel = new JButton("Cancel Internship"){{
             addActionListener(e -> {
                 plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Cancelled" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
@@ -105,6 +137,8 @@ public class ViewInternship extends javax.swing.JDialog {
                 
             });
         }};
+        cancel.setSize(buttonSize);
+        cancel.setFont(cancel.getFont().deriveFont(18f));
         
         JButton uncancel = new JButton("Renew Internship"){{
             addActionListener(e -> {
@@ -115,18 +149,22 @@ public class ViewInternship extends javax.swing.JDialog {
                 
             });
         }};
+        uncancel.setSize(buttonSize);
+        uncancel.setFont(uncancel.getFont().deriveFont(18f));
         
         JButton close = new JButton("Close"){{
             addActionListener(e-> {
                 ViewInternship.this.dispose();
             });
         }};
+        close.setSize(buttonSize);
+        close.setFont(close.getFont().deriveFont(18f));
                 
         
         if (type.equals("Ongoing")){
-            buttonPanel.add(cancel, "cell 0 0, align right");        
+            buttonPanel.add(cancel, "cell 1 0, align right");        
         } else if (type.equals("Cancelled")){
-            buttonPanel.add(uncancel, "cell 0 0, align right");
+            buttonPanel.add(uncancel, "cell 1 0, align right");
         }
         buttonPanel.add(close, "cell 2 0, align left");
         

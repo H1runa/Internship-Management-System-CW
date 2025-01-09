@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.models.Internship;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
@@ -43,7 +44,7 @@ public class InternshipUpdateForm extends javax.swing.JDialog {
         JPanel contentPanel = new JPanel(new MigLayout("fillx, wrap 1", "[]", "[]15[]"));
         JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[]15[]"));
         
-        JLabel title = new JLabel("Update Internship");
+        JLabel title = new JLabel("Update Internship"); title.setFont(title.getFont().deriveFont(Font.BOLD, 24f));
 
         titlePanel.add(title, "cell 1 0, align center");
         

@@ -4,6 +4,7 @@ import com.mycompany.internshipmanager.controllers.InternshipController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
@@ -39,9 +40,9 @@ public class empItemPanel extends javax.swing.JPanel {
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
         
         
-        JLabel title= new JLabel(t);
-        JLabel duration = new JLabel("Duration: " + String.valueOf(d));
-        JLabel status = new JLabel(s);
+        JLabel title= new JLabel(t); title.setFont(getFont().deriveFont(Font.PLAIN, 20f));
+        JLabel duration = new JLabel("Duration: " + String.valueOf(d)); duration.setFont(getFont().deriveFont(Font.PLAIN, 20f));
+        JLabel status = new JLabel(s); status.setFont(getFont().deriveFont(Font.PLAIN, 20f));
         
         title.setForeground(Color.black);
         duration.setForeground(Color.black);
@@ -84,7 +85,10 @@ public class empItemPanel extends javax.swing.JPanel {
             });}};
         });
         
-        delete.addActionListener(e-> {            
+        delete.addActionListener(e-> { 
+            int confirm = JOptionPane.showConfirmDialog(empItemPanel.this, "Delete?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        if (confirm == JOptionPane.YES_OPTION){                                 
             InternshipController control = new InternshipController();
             try{
                 control.deleteInternship(id);
@@ -92,6 +96,7 @@ public class empItemPanel extends javax.swing.JPanel {
             } catch(SQLException ex){
                 JOptionPane.showMessageDialog(this, "Record could not be deleted", "Database Error", JOptionPane.ERROR_MESSAGE);
                 }
+        }
         });
         
         view_appl.addActionListener(e-> {

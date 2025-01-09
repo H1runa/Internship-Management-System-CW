@@ -10,12 +10,20 @@ import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
 import com.mycompany.internshipmanager.models.Student;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
@@ -75,34 +83,72 @@ public class ViewApplication extends javax.swing.JDialog {
         JPanel namePanel = new JPanel(new BorderLayout());        
         namePanel.setBorder(BorderFactory.createTitledBorder("Full Name"));        
         JLabel name = new JLabel(std.getFirst_name() + " " + std.getLast_name());
+        name.setFont(name.getFont().deriveFont(18f));
         namePanel.add(name, BorderLayout.CENTER);
         contentPanel.add(namePanel, "growx, shrinkx");
+        namePanel.setBackground(Color.decode("#484848"));
+        namePanel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                namePanel.setBackground(Color.decode("#585858"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                namePanel.setBackground(Color.decode("#484848"));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                new ViewStudent(ViewApplication.this, std.getStd_id()).setVisible(true);
+            }                        
+        });
         
         JPanel internshipPanel = new JPanel(new BorderLayout());        
         internshipPanel.setBorder(BorderFactory.createTitledBorder("Internship"));        
         JLabel internship = new JLabel(intern.getTitle());
+        internship.setFont(internship.getFont().deriveFont(18f));
         internshipPanel.add(internship, BorderLayout.CENTER);
         contentPanel.add(internshipPanel, "growx, shrinkx");
         
         JPanel datePanel = new JPanel(new BorderLayout());        
         datePanel.setBorder(BorderFactory.createTitledBorder("Date Submitted"));        
         JLabel date = new JLabel(appl.getDate());
+        date.setFont(date.getFont().deriveFont(18f));
         datePanel.add(date, BorderLayout.CENTER);
         contentPanel.add(datePanel, "growx, shrinkx");
         
         JPanel resumePanel = new JPanel(new BorderLayout());        
-        resumePanel.setBorder(BorderFactory.createTitledBorder("Link to Resume"));        
-        JLabel resume = new JLabel(appl.getResume());
+        resumePanel.setBorder(BorderFactory.createTitledBorder("Link to Resume"));   
+        String link = appl.getResume();
+        JLabel resume = new JLabel("<html><a href='#'>"+link+"</a></html>");
+        resume.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        resume.setFont(resume.getFont().deriveFont(18f));
+        resume.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                StringSelection selection = new StringSelection(link);
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+                JOptionPane.showMessageDialog(ViewApplication.this, "Link copied to clipboard", "Copied!", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        });
         resumePanel.add(resume, BorderLayout.CENTER);
         contentPanel.add(resumePanel, "growx, shrinkx");
         
         JPanel statusPanel = new JPanel(new BorderLayout());        
         statusPanel.setBorder(BorderFactory.createTitledBorder("status"));        
         JLabel status = new JLabel(appl.getStatus());
+        status.setFont(status.getFont().deriveFont(18f));
         statusPanel.add(status, BorderLayout.CENTER);
         contentPanel.add(statusPanel, "growx, shrinkx");
         
         //buttons
+        Dimension buttonSize = new Dimension(80,30);
         JButton accept = new JButton("Accept"){{
             addActionListener(e -> {
                 appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Accepted");                
@@ -122,6 +168,9 @@ public class ViewApplication extends javax.swing.JDialog {
                 
             });
         }};
+        accept.getSize(buttonSize);
+        accept.setFont(accept.getFont().deriveFont(18f));
+        
         JButton reject = new JButton("Reject"){{
             addActionListener(e -> {
                 appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Rejected");                
@@ -130,12 +179,16 @@ public class ViewApplication extends javax.swing.JDialog {
                 
             });
         }};
+        reject.getSize(buttonSize);
+        reject.setFont(accept.getFont().deriveFont(18f));
         
         JButton close = new JButton("Close"){{
             addActionListener(e-> {
                 ViewApplication.this.dispose();
             });
         }};
+        close.getSize(buttonSize);
+        close.setFont(accept.getFont().deriveFont(18f));
                 
         
         

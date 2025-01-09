@@ -1,6 +1,7 @@
 package com.mycompany.internshipmanager.std_dashboard;
 
 import com.mycompany.internshipmanager.controllers.EmployerController;
+import com.mycompany.internshipmanager.emp_dashboard.EmployerReport;
 import com.mycompany.internshipmanager.models.Employer;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -22,12 +23,14 @@ public class ViewEmployer extends javax.swing.JDialog {
      */
     private EmployerController empControl = new EmployerController();
     private JDialog parent;
+    private int emp_id;
     
     public ViewEmployer(int empid, JDialog parent) {
         super(parent, true);
         initComponents();
         
         this.parent = parent;
+        this.emp_id = empid;
         Employer emp = empControl.getEmployerByID(empid);
         
         empName.setText(emp.getName());
@@ -97,6 +100,7 @@ public class ViewEmployer extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         email = new javax.swing.JTextArea();
         closeButton = new javax.swing.JButton();
+        reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(623, 593));
@@ -177,7 +181,19 @@ public class ViewEmployer extends javax.swing.JDialog {
                 closeButtonActionPerformed(evt);
             }
         });
-        panel.add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, 100, 40));
+        panel.add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, 100, 40));
+
+        reportButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        reportButton.setText("View Report");
+        reportButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        reportButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        reportButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportButtonActionPerformed(evt);
+            }
+        });
+        panel.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 150, 40));
 
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
@@ -187,6 +203,10 @@ public class ViewEmployer extends javax.swing.JDialog {
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
+        new EmployerReport(emp_id, ViewEmployer.this);
+    }//GEN-LAST:event_reportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,5 +229,6 @@ public class ViewEmployer extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panel;
     private javax.swing.JTextArea phone;
+    private javax.swing.JButton reportButton;
     // End of variables declaration//GEN-END:variables
 }
