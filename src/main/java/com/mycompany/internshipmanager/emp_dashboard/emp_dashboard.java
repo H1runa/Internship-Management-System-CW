@@ -104,8 +104,10 @@ public class emp_dashboard extends javax.swing.JFrame {
         itemList_panel.removeAll();
         List<Internship> list = c.getInternships();
         for (Internship i:list){
-            empItemPanel item = new empItemPanel(i.getId(), i.getTitle(), i.getDuration(), i.getStatus(), emp_dashboard.this);
-            itemList_panel.add(item);
+            if (i.getEmp_id() == empId){
+                empItemPanel item = new empItemPanel(i.getId(), i.getTitle(), i.getDuration(), i.getStatus(), emp_dashboard.this);
+                itemList_panel.add(item);
+            }
         }
         
         revalidate();

@@ -116,4 +116,43 @@ public class ApplicationDAO {
         }
     }
     
+    public int getApplicationsSubmitted(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Applications WHERE stu_id = ?";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public int getApplicationsAccepted(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Applications WHERE stu_id = ? AND status = 'Accepted'";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public int getApplicationsRejected(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Applications WHERE stu_id = ? AND status = 'Rejected'";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+    
 }

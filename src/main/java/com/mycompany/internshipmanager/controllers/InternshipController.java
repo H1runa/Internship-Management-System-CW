@@ -144,5 +144,6 @@ public class InternshipController {
             System.out.println("Internship list could not be deleted. \nError: "+ ex.getMessage());
         }
     }
+        
     
 }

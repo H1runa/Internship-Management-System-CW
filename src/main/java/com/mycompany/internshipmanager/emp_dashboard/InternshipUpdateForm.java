@@ -3,7 +3,6 @@ package com.mycompany.internshipmanager.emp_dashboard;
 import com.formdev.flatlaf.FlatClientProperties;
 
 import com.mycompany.internshipmanager.controllers.InternshipController;
-import com.mycompany.internshipmanager.custom_ui.BackButton;
 import com.mycompany.internshipmanager.models.Internship;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -45,9 +44,7 @@ public class InternshipUpdateForm extends javax.swing.JDialog {
         JPanel buttonPanel = new JPanel(new MigLayout("fillx", "[]15[]"));
         
         JLabel title = new JLabel("Update Internship");
-//        BackButton back = new BackButton("<-)", this);
-        
-//        titlePanel.add(back, "cell 0 0, align left");
+
         titlePanel.add(title, "cell 1 0, align center");
         
         JPanel tPanel = new JPanel(new BorderLayout());         //defining the fields to enter data

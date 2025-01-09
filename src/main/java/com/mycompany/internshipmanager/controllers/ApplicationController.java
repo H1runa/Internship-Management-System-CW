@@ -130,4 +130,31 @@ public class ApplicationController {
         }
     }
     
+    public int getApplicationsSubmitted(int id){
+        try{
+            dao.getApplicationsSubmitted(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve submitted applications\n"+ex.getMessage());
+        }
+        return 0;
+    }
+    
+    public int getApplicationsAccepted(int id){
+        try{
+            dao.getApplicationsAccepted(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve accepted applications");
+        }
+        return 0;
+    }
+    
+    public int getApplicationsRejected(int id){
+        try{
+            dao.getApplicationsRejected(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve rejected applications");
+        }
+        return 0;
+    }
+    
 }

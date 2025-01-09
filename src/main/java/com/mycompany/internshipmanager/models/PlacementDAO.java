@@ -118,4 +118,43 @@ public class PlacementDAO {
             System.out.println("All Placement records deleted.");
         }
     }
+    
+     public int getInternshipsFinished(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Placements WHERE std_id = ? and status = 'Finished'";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+     
+     public int getInternshipsOngoing(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Placements WHERE std_id = ? and status = 'Ongoing'";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+     
+     public int getInternshipsCancelled(int id) throws SQLException{
+        String query = "SELECT COUNT(*) FROM Placements WHERE std_id = ? and status = 'Cancelled'";
+        try(PreparedStatement prp = conn.prepareStatement(query)){
+            prp.setInt(1, id);
+            try (ResultSet rs = prp.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
 }

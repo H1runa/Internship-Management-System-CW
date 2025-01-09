@@ -1,5 +1,7 @@
 package com.mycompany.internshipmanager.std_dashboard;
 
+import com.mycompany.internshipmanager.DBConnection;
+import com.mycompany.internshipmanager.OldReport;
 import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.EmployerController;
 import com.mycompany.internshipmanager.controllers.InternshipController;
@@ -9,9 +11,26 @@ import com.mycompany.internshipmanager.custom_ui.GlassPane;
 import com.mycompany.internshipmanager.models.Application;
 import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -102,6 +121,7 @@ public class std_dashboard extends javax.swing.JFrame {
         findPane = new javax.swing.JPanel();
         myInternships = new javax.swing.JScrollPane();
         internshipPane = new javax.swing.JPanel();
+        reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -162,11 +182,55 @@ public class std_dashboard extends javax.swing.JFrame {
 
         background_panel.add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 630, 310));
 
+        reportButton.setText("Report");
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportButtonActionPerformed(evt);
+            }
+        });
+        background_panel.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, -1));
+
         getContentPane().add(background_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 500));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
+        
+        
+        new Report(logged_std);
+        
+//        Connection conn = DBConnection.getConnection();
+//        
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("student_id_param", logged_std); 
+//        
+//        InputStream reportStream = OldReport.getInstance().getInternshipReport();
+//
+//        try{
+//            
+//            if (reportStream != null){
+//                JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);                                
+//                
+//                JRDataSource emptyDataSource = new JREmptyDataSource();
+//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, emptyDataSource);
+//
+//                JasperViewer jasperViewer = new JasperViewer(jasperPrint, false); // false to not show export options
+//                jasperViewer.setVisible(true);
+//            } else {
+//                System.out.println("File not found");
+//            }
+//
+//            
+//            
+//        } catch(JRException ex){
+//            System.out.println(ex.getMessage());
+//        }
+
+        
+
+    }//GEN-LAST:event_reportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +244,7 @@ public class std_dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane findScroll;
     private javax.swing.JPanel internshipPane;
     private javax.swing.JScrollPane myInternships;
+    private javax.swing.JButton reportButton;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

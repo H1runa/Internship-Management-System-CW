@@ -136,4 +136,34 @@ public class PlacementController {
         }
     }
     
+    public int getInternshipsFinished(int id){
+        try{
+            return dao.getInternshipsFinished(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve finished internships");
+        }
+        
+        return 0;
+    }
+    
+    public int getInternshipsOngoing(int id){
+        try{
+            return dao.getInternshipsOngoing(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve ongoing internships");
+        }
+        
+        return 0;
+    }
+    
+    public int getInternshipsCancelled(int id){
+        try{
+            return dao.getInternshipsCancelled(id);
+        } catch (SQLException ex){
+            System.out.println("Couldn't retrieve cancelled internships");
+        }
+        
+        return 0;
+    }
+    
 }

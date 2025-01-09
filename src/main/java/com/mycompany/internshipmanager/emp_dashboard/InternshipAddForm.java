@@ -3,7 +3,6 @@ package com.mycompany.internshipmanager.emp_dashboard;
 import com.formdev.flatlaf.FlatClientProperties;
 
 import com.mycompany.internshipmanager.controllers.InternshipController;
-import com.mycompany.internshipmanager.custom_ui.BackButton;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

@@ -1,8 +1,12 @@
-package com.mycompany.internshipmanager.std_dashboard;
+package com.mycompany.internshipmanager;
 
 import com.mycompany.internshipmanager.emp_dashboard.emp_dashboard;
 import com.mycompany.internshipmanager.models.EmployerLoginDAO;
 import com.mycompany.internshipmanager.models.StudentLoginDAO;
+import com.mycompany.internshipmanager.emp_dashboard.RegisterEmployer;
+import com.mycompany.internshipmanager.std_dashboard.RegisterStudent;
+import com.mycompany.internshipmanager.std_dashboard.std_dashboard;
+import java.awt.Cursor;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -43,11 +47,12 @@ public class Login extends javax.swing.JDialog {
         loginButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         role = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        registerLabel = new javax.swing.JLabel();
+        registerButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(632, 402));
         setMinimumSize(new java.awt.Dimension(632, 402));
-        setPreferredSize(new java.awt.Dimension(632, 402));
         setResizable(false);
 
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +60,7 @@ public class Login extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
-        panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 140, 50));
+        panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 20, 140, 50));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -87,14 +92,31 @@ public class Login extends javax.swing.JDialog {
         });
         panel.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 110, 40));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Role", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Role", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         role.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Employer" }));
         jPanel3.add(role, java.awt.BorderLayout.PAGE_START);
 
-        panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 140, 60));
+        panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 140, 60));
+
+        registerLabel.setText("Don't have an account?");
+        jPanel4.add(registerLabel);
+
+        registerButton.setText("<html><u>Register here</u></html>>");
+        registerButton.setToolTipText("");
+        registerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerButtonMouseEntered(evt);
+            }
+        });
+        jPanel4.add(registerButton);
+
+        panel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 270, 30));
 
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
@@ -153,6 +175,18 @@ public class Login extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    private void registerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseClicked
+        if(role.getSelectedItem().equals("Student")){
+            new RegisterStudent(Login.this).setVisible(true);
+        } else if (role.getSelectedItem().equals("Employer")){
+            new RegisterEmployer(Login.this).setVisible(true);
+        }
+    }//GEN-LAST:event_registerButtonMouseClicked
+
+    private void registerButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseEntered
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_registerButtonMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -202,9 +236,12 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel panel;
     private javax.swing.JTextField password;
+    private javax.swing.JLabel registerButton;
+    private javax.swing.JLabel registerLabel;
     private javax.swing.JComboBox<String> role;
     // End of variables declaration//GEN-END:variables
 }

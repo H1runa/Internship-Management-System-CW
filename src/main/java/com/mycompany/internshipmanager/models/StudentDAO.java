@@ -108,5 +108,5 @@ public class StudentDAO {
             stmt.executeUpdate(query);
             System.out.println("All students records were deleted.");
         }
-    }
+    }               
 }

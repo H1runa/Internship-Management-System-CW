@@ -3,6 +3,7 @@ package com.mycompany.internshipmanager.std_dashboard;
 import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.models.StudentLoginDAO;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +18,14 @@ public class RegisterStudent extends javax.swing.JDialog {
     private StudentLoginDAO dao;
     private StudentController stdControl;
     
-    public RegisterStudent() {        
+    public RegisterStudent(JDialog parent) {
+        super(parent, true);
         initComponents();
         
         this.dao = new StudentLoginDAO();
         this.stdControl = new StudentController();
+        
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -53,10 +57,12 @@ public class RegisterStudent extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         yos = new javax.swing.JTextField();
         registerButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(560, 708));
         setMinimumSize(new java.awt.Dimension(560, 708));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(560, 708));
         setResizable(false);
 
@@ -168,7 +174,19 @@ public class RegisterStudent extends javax.swing.JDialog {
                 registerButtonActionPerformed(evt);
             }
         });
-        panel.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 610, 120, 50));
+        panel.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 120, 50));
+
+        closeButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        closeButton.setText("Close");
+        closeButton.setMaximumSize(new java.awt.Dimension(80, 30));
+        closeButton.setMinimumSize(new java.awt.Dimension(80, 30));
+        closeButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        panel.add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, 120, 50));
 
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
@@ -214,49 +232,17 @@ public class RegisterStudent extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        RegisterStudent.this.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                RegisterStudent dialog = new RegisterStudent();
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     private javax.swing.JTextField department;
     private javax.swing.JTextField dob;
     private javax.swing.JTextField email;
