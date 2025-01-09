@@ -1,6 +1,6 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
-import com.mycompany.internshipmanager.LoggedEmployer;
+
 import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.controllers.PlacementController;
@@ -39,13 +39,15 @@ public class ViewApplication extends javax.swing.JDialog {
     private PlacementController plaControl;
     private Placement pla;
     private JPanel panel;
+    private int loggedInId;
     
-    public ViewApplication(ViewApplicationsList dia, int appl_id) {
+    public ViewApplication(ViewApplicationsList dia, int appl_id, int loggedInId) {
         super(dia, "ViewApplication", true);
         this.dialog = dia;        
         this.appl_control = new ApplicationController();
         this.appl = appl_control.getApplicationByID(appl_id);
         this.plaControl = new PlacementController();
+        this.loggedInId = loggedInId;
         
         initComponents();
         
@@ -113,7 +115,7 @@ public class ViewApplication extends javax.swing.JDialog {
                 String string_today = formatter.format(today);
                 String string_end_date = formatter.format(end_date);
                 
-                plaControl.addPlacement(String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), String.valueOf(LoggedEmployer.getInstance().getEmployer().getEmp_id()), "Ongoing", string_today, string_end_date, "");
+                plaControl.addPlacement(String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), String.valueOf(loggedInId), "Ongoing", string_today, string_end_date, "");
                 
                 ViewApplication.this.dispose();
                 

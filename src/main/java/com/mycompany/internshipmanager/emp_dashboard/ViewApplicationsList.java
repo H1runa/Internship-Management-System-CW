@@ -122,7 +122,7 @@ public class ViewApplicationsList extends javax.swing.JDialog {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
-                        new ViewApplication(ViewApplicationsList.this, appl.getApplication_id());
+                        new ViewApplication(ViewApplicationsList.this, appl.getApplication_id(), dash.empId);
                     }
                     
                     

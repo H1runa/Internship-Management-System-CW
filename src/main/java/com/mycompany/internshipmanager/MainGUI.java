@@ -1,12 +1,6 @@
 package com.mycompany.internshipmanager;
 
-import com.mycompany.internshipmanager.controllers.EmployerController;
-import com.mycompany.internshipmanager.student_views.StudentListView;
-import com.mycompany.internshipmanager.controllers.StudentController;
-import com.mycompany.internshipmanager.employer_views.EmployerAddForm;
-import com.mycompany.internshipmanager.employer_views.EmployerListView;
-import com.mycompany.internshipmanager.employer_views.EmployerUpdateForm;
-import com.mycompany.internshipmanager.emp_dashboard.InternshipAddForm;
+
 import net.miginfocom.swing.MigLayout;
 
 public class MainGUI extends javax.swing.JFrame {

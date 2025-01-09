@@ -1,6 +1,5 @@
 package com.mycompany.internshipmanager.std_dashboard;
 
-import com.mycompany.internshipmanager.LoggedStudent;
 import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.EmployerController;
 import com.mycompany.internshipmanager.controllers.InternshipController;

@@ -1,7 +1,7 @@
 package com.mycompany.internshipmanager.emp_dashboard;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.mycompany.internshipmanager.LoggedEmployer;
+
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.custom_ui.BackButton;
 import com.mycompany.internshipmanager.models.Internship;
@@ -87,7 +87,7 @@ public class InternshipUpdateForm extends javax.swing.JDialog {
             public void mouseClicked(MouseEvent e){
                 if (e.getButton() == 1){
                     try{
-                        control.updateInternship(id,tField.getText(), desc.getText(), String.valueOf(LoggedEmployer.getInstance().getEmployer().getEmp_id()) , duration.getText() , status.getSelectedItem().toString());
+                        control.updateInternship(id,tField.getText(), desc.getText(), String.valueOf(dash.empId) , duration.getText() , status.getSelectedItem().toString());
                         InternshipUpdateForm.this.dispose();
                         dash.updateInternshipList();
                     } catch (IllegalArgumentException ex){
