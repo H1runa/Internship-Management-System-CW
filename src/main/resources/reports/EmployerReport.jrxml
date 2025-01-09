@@ -1,0 +1,112 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="EmployerReport" language="java" columnCount="1" pageWidth="600" pageHeight="400" orientation="Landscape" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe0f0a13-9f8f-44e8-8d62-5247fda9dd57">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLiteAdapter"/>
+	<parameter name="emp_ID" class="java.lang.Integer"/>
+	<parameter name="ongoing" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Ongoing"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cancelled" forPrompting="false" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cancelled"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="finished" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Finished"]]></defaultValueExpression>
+	</parameter>
+	<query language="SQL"><![CDATA[SELECT 
+    e.emp_id, 
+    e.name AS employer_name,
+    COUNT(CASE WHEN p.status = $P{ongoing} THEN 1 END) AS ong_intern,
+    COUNT(CASE WHEN p.status = $P{cancelled} THEN 1 END) AS cancelled_intern,
+    COUNT(CASE WHEN p.status = $P{finished} THEN 1 END) AS finished_intern,
+    COUNT(p.status) AS total_placements,
+    CASE 
+        WHEN COUNT(p.status) = 0 THEN 0 
+        ELSE 
+            (COUNT(CASE WHEN p.status = $P{finished} THEN 1 END) * 100.0) / COUNT(p.status)
+    END AS success_rate
+FROM 
+    Employers e
+LEFT JOIN 
+    Placements p ON e.emp_id = p.emp_id
+WHERE
+    e.emp_id = $P{emp_ID} 
+GROUP BY 
+    e.emp_id, e.name;
+]]></query>
+	<field name="emp_id" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="emp_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="emp_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Employers"/>
+	</field>
+	<field name="employer_name" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="employer_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="employer_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Employers"/>
+	</field>
+	<field name="ong_intern" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="ong_intern"/>
+		<property name="com.jaspersoft.studio.field.label" value="ong_intern"/>
+	</field>
+	<field name="cancelled_intern" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="cancelled_intern"/>
+		<property name="com.jaspersoft.studio.field.label" value="cancelled_intern"/>
+	</field>
+	<field name="finished_intern" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="finished_intern"/>
+		<property name="com.jaspersoft.studio.field.label" value="finished_intern"/>
+	</field>
+	<field name="total_placements" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="total_placements"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_placements"/>
+	</field>
+	<field name="success_rate" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="success_rate"/>
+		<property name="com.jaspersoft.studio.field.label" value="success_rate"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="58" splitType="Stretch">
+		<element kind="staticText" uuid="9f857bac-f604-4490-8259-f8fe5141be07" x="180" y="0" width="270" height="58" fontSize="32.0">
+			<text><![CDATA[Employer Report]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="260" splitType="Stretch">
+			<element kind="textField" uuid="cfa48765-e2b1-46a2-befb-c7dcb6e1917d" x="317" y="30" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{employer_name}]]></expression>
+			</element>
+			<element kind="staticText" uuid="1e808a09-e5bc-4abd-b7f2-8570adb75800" x="162" y="30" width="123" height="30" fontSize="16.0">
+				<text><![CDATA[Employer Name:]]></text>
+			</element>
+			<element kind="staticText" uuid="e51676c8-07fd-4da9-9bdc-35ee8f67a390" x="134" y="110" width="153" height="30" fontSize="16.0">
+				<text><![CDATA[Ongoing Internships:]]></text>
+			</element>
+			<element kind="textField" uuid="395bb8ad-f2fe-446f-9f81-02aa8439a2df" x="317" y="110" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{ong_intern}]]></expression>
+			</element>
+			<element kind="staticText" uuid="6a4922d1-8a85-4980-b5e8-afcd3d67e83c" x="122" y="150" width="163" height="30" fontSize="16.0">
+				<text><![CDATA[Cancelled Internships:]]></text>
+			</element>
+			<element kind="textField" uuid="00cea04e-f2c2-469c-9c5e-f6a53d5ed898" x="317" y="150" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{cancelled_intern}]]></expression>
+			</element>
+			<element kind="staticText" uuid="67d1d901-5908-48b9-b484-048cb26669ad" x="133" y="190" width="153" height="30" fontSize="16.0">
+				<text><![CDATA[Finished Internships:]]></text>
+			</element>
+			<element kind="textField" uuid="d9f51b8a-22f5-4ab3-9afe-8f83eef74348" x="317" y="190" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{finished_intern}]]></expression>
+			</element>
+			<element kind="staticText" uuid="a8b97e26-a54d-42a3-b178-9a37c65b209f" x="37" y="70" width="250" height="30" fontSize="16.0">
+				<text><![CDATA[Total Number of Interns Accepted:]]></text>
+			</element>
+			<element kind="textField" uuid="68509733-2569-4ab9-abed-648f85ffe2d2" x="317" y="70" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{total_placements}]]></expression>
+			</element>
+			<element kind="staticText" uuid="5b56620a-73de-44b6-a181-f5a77a5c13f8" x="161" y="230" width="130" height="30" fontSize="16.0">
+				<text><![CDATA[Sucess Rate(%):]]></text>
+			</element>
+			<element kind="textField" uuid="e4ebe27d-4f69-4f5d-9d71-dd1acf75f37b" x="317" y="230" width="250" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{success_rate}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

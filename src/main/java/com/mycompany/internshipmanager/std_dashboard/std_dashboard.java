@@ -197,39 +197,8 @@ public class std_dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-        
-        
-        new Report(logged_std);
-        
-//        Connection conn = DBConnection.getConnection();
-//        
-//        Map<String, Object> parameters = new HashMap<>();
-//        parameters.put("student_id_param", logged_std); 
-//        
-//        InputStream reportStream = OldReport.getInstance().getInternshipReport();
-//
-//        try{
-//            
-//            if (reportStream != null){
-//                JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);                                
-//                
-//                JRDataSource emptyDataSource = new JREmptyDataSource();
-//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, emptyDataSource);
-//
-//                JasperViewer jasperViewer = new JasperViewer(jasperPrint, false); // false to not show export options
-//                jasperViewer.setVisible(true);
-//            } else {
-//                System.out.println("File not found");
-//            }
-//
-//            
-//            
-//        } catch(JRException ex){
-//            System.out.println(ex.getMessage());
-//        }
-
-        
-
+                
+        new StudentReport(logged_std);                
     }//GEN-LAST:event_reportButtonActionPerformed
 
     /**

@@ -10,13 +10,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<parameter name="std_name" class="java.lang.String"/>
-	<parameter name="internships_applied" class="java.lang.Integer"/>
-	<parameter name="internships_selected" class="java.lang.Integer"/>
-	<parameter name="internships_rejected" class="java.lang.Integer"/>
-	<parameter name="internships_completed" class="java.lang.Integer"/>
-	<parameter name="internships_ongoing" class="java.lang.Integer"/>
-	<parameter name="internships_cancelled" class="java.lang.Integer"/>
+	<parameter name="std_ID" class="java.lang.Integer"/>
 	<query language="sql"><![CDATA[]]></query>
 	<background splitType="Stretch"/>
 	<title height="89" splitType="Stretch">

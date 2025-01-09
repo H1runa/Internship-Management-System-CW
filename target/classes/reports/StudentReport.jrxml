@@ -1,0 +1,125 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="StudentReport" language="java" columnCount="1" pageWidth="600" pageHeight="400" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="253a9a71-6041-4520-b13a-9f3764913a6f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="std_ID" class="java.lang.Integer"/>
+	<query language="SQL"><![CDATA[SELECT 
+    s.std_id, 
+    s.first_name || ' ' || s.last_name AS student_name,
+    
+    -- From Applications table
+    COUNT(CASE WHEN a.status = 'Accepted' THEN 1 END) AS accepted_apps,
+    COUNT(CASE WHEN a.status = 'Rejected' THEN 1 END) AS rejected_apps,
+    COUNT(a.status) AS total_apps,
+    
+    -- From Placements table
+    COUNT(CASE WHEN p.status = 'Ongoing' THEN 1 END) AS ongoing_placements,
+    COUNT(CASE WHEN p.status = 'Cancelled' THEN 1 END) AS cancelled_placements,
+    COUNT(CASE WHEN p.status = 'Finished' THEN 1 END) AS finished_placements
+    
+FROM 
+    Students s
+LEFT JOIN 
+    Applications a ON s.std_id = a.stu_id
+LEFT JOIN 
+    Placements p ON s.std_id = p.std_id
+WHERE 
+    s.std_id = $P{std_ID} 
+GROUP BY 
+    s.std_id, s.first_name, s.last_name;
+]]></query>
+	<field name="std_id" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="std_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="std_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Students"/>
+	</field>
+	<field name="student_name" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="student_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="student_name"/>
+	</field>
+	<field name="accepted_apps" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="accepted_apps"/>
+		<property name="com.jaspersoft.studio.field.label" value="accepted_apps"/>
+	</field>
+	<field name="rejected_apps" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="rejected_apps"/>
+		<property name="com.jaspersoft.studio.field.label" value="rejected_apps"/>
+	</field>
+	<field name="total_apps" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="total_apps"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_apps"/>
+	</field>
+	<field name="ongoing_placements" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="ongoing_placements"/>
+		<property name="com.jaspersoft.studio.field.label" value="ongoing_placements"/>
+	</field>
+	<field name="cancelled_placements" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="cancelled_placements"/>
+		<property name="com.jaspersoft.studio.field.label" value="cancelled_placements"/>
+	</field>
+	<field name="finished_placements" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="finished_placements"/>
+		<property name="com.jaspersoft.studio.field.label" value="finished_placements"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="69" splitType="Stretch">
+		<element kind="staticText" uuid="5f1f7dbc-252f-4ceb-a529-2a250d0c62b7" x="150" y="19" width="280" height="50" fontSize="32.0">
+			<text><![CDATA[Student Summary]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="229" splitType="Stretch">
+			<element kind="textField" uuid="4051e604-61c4-40a4-8bf9-08c2e1ab307e" x="280" y="54" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{total_apps}]]></expression>
+			</element>
+			<element kind="staticText" uuid="f0e100ec-bdbc-4b92-b852-dcf43abad037" x="77" y="85" width="182" height="22" fontSize="16.0">
+				<text><![CDATA[Applications Accepted:]]></text>
+			</element>
+			<element kind="textField" uuid="c121d143-0ccd-4799-b3a6-25876719b5bb" x="280" y="84" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{accepted_apps}]]></expression>
+			</element>
+			<element kind="staticText" uuid="cf660a05-b3d6-475d-a6e7-19728d12faba" x="81" y="116" width="182" height="22" fontSize="16.0">
+				<text><![CDATA[Applications Rejected:]]></text>
+			</element>
+			<element kind="textField" uuid="921f055f-511a-4270-a6a4-82a663516477" x="280" y="114" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{rejected_apps}]]></expression>
+			</element>
+			<element kind="staticText" uuid="5d9ea9aa-b2f7-486e-aeef-6afb46963e84" x="92" y="146" width="158" height="22" fontSize="16.0">
+				<text><![CDATA[Internships Ongoing:]]></text>
+			</element>
+			<element kind="textField" uuid="7fdf72c7-a727-4d30-bff7-77a7d1dd3606" x="280" y="145" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{ongoing_placements}]]></expression>
+			</element>
+			<element kind="staticText" uuid="126d7486-ba39-4e21-9db6-bbd3e79ad4c2" x="81" y="176" width="168" height="22" fontSize="16.0">
+				<text><![CDATA[Internships Cancelled:]]></text>
+			</element>
+			<element kind="textField" uuid="fe45694c-de07-436c-8346-d04dccea8751" x="281" y="175" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{cancelled_placements}]]></expression>
+			</element>
+			<element kind="staticText" uuid="37eac41c-d31c-432a-8fc0-7d39b055e544" x="93" y="206" width="168" height="22" fontSize="16.0">
+				<text><![CDATA[Internships Finished:]]></text>
+			</element>
+			<element kind="textField" uuid="bff20511-7f40-486a-9326-8ed3adbad34b" x="280" y="205" width="200" height="24" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{finished_placements}]]></expression>
+			</element>
+			<element kind="staticText" uuid="532cbec6-0a04-4019-a677-38a99b5c3c1a" x="70" y="56" width="190" height="22" fontSize="16.0">
+				<text><![CDATA[Applications Submitted:]]></text>
+			</element>
+			<element kind="staticText" uuid="669b3c9e-850a-492f-a6bd-8dd42e80141a" x="130" y="29" width="130" height="22" fontSize="16.0">
+				<text><![CDATA[Student Name:]]></text>
+			</element>
+			<element kind="textField" uuid="ae473d1a-798b-4b63-8c2d-0934d0ef10ca" x="280" y="29" width="264" height="22" fontSize="16.0" blankWhenNull="true">
+				<expression><![CDATA[$F{student_name}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

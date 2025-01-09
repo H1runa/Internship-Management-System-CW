@@ -132,7 +132,7 @@ public class ApplicationController {
     
     public int getApplicationsSubmitted(int id){
         try{
-            dao.getApplicationsSubmitted(id);
+            return dao.getApplicationsSubmitted(id);            
         } catch (SQLException ex){
             System.out.println("Couldn't retrieve submitted applications\n"+ex.getMessage());
         }
@@ -141,7 +141,7 @@ public class ApplicationController {
     
     public int getApplicationsAccepted(int id){
         try{
-            dao.getApplicationsAccepted(id);
+            return dao.getApplicationsAccepted(id);
         } catch (SQLException ex){
             System.out.println("Couldn't retrieve accepted applications");
         }
@@ -150,7 +150,7 @@ public class ApplicationController {
     
     public int getApplicationsRejected(int id){
         try{
-            dao.getApplicationsRejected(id);
+            return dao.getApplicationsRejected(id);
         } catch (SQLException ex){
             System.out.println("Couldn't retrieve rejected applications");
         }

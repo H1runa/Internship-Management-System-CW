@@ -36,7 +36,8 @@ public class Main {
             System.out.println("Look and feel not initialized: " + ex.getMessage());
         }
         
-        new std_dashboard(1).setVisible(true);
+        new emp_dashboard(1).setVisible(true);
+//        new std_dashboard(1).setVisible(true);
 //        new RegisterStudent().setVisible(true);
 //        new Login().setVisible(true);
 //          new RegisterEmployer().setVisible(true);

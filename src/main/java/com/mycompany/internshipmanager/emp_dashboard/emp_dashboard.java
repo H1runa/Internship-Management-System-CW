@@ -26,9 +26,9 @@ public class emp_dashboard extends javax.swing.JFrame {
     
     public emp_dashboard(int id) {
         initComponents();
-        init();
-        updateInternshipList();
+        init();        
         this.empId = id;
+        updateInternshipList();
     }        
 
     /**
@@ -45,6 +45,7 @@ public class emp_dashboard extends javax.swing.JFrame {
         scrollpane = new javax.swing.JScrollPane();
         itemList_panel = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
+        reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -63,11 +64,23 @@ public class emp_dashboard extends javax.swing.JFrame {
         addButton.setText("Add");
         background_panel.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
+        reportButton.setText("Report");
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportButtonActionPerformed(evt);
+            }
+        });
+        background_panel.add(reportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
+
         getContentPane().add(background_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 510));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
+        new EmployerReport(empId);
+    }//GEN-LAST:event_reportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,6 +111,7 @@ public class emp_dashboard extends javax.swing.JFrame {
         //setting up glass pane
         gp = new GlassPane(this);
         setGlassPane(gp); gp.setVisible(false);
+                
     }
     
     public void updateInternshipList(){
@@ -118,6 +132,7 @@ public class emp_dashboard extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JPanel background_panel;
     private javax.swing.JPanel itemList_panel;
+    private javax.swing.JButton reportButton;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
