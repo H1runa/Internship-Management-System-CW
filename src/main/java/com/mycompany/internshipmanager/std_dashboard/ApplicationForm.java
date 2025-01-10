@@ -4,6 +4,7 @@ import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.StudentController;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JDialog;
@@ -103,7 +104,16 @@ public class ApplicationForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        int confirm = JOptionPane.showOptionDialog(
+        
+        if (linkField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(ApplicationForm.this, "Enter a valid link", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try{        
+            applControl.addApplication(String.valueOf(stdid), String.valueOf(internid), today , linkField.getText(), "To be reviewed");
+            
+            JOptionPane.showOptionDialog(
             ApplicationForm.this, 
             "Your application has been submitted.", 
             "Submission Successful", 
@@ -113,11 +123,10 @@ public class ApplicationForm extends javax.swing.JDialog {
             new Object[] {"OK"}, 
             "OK" 
         );
-        
-        if (confirm == JOptionPane.OK_OPTION){        
-            applControl.addApplication(String.valueOf(stdid), String.valueOf(internid), today , linkField.getText(), "To be reviewed");
             ApplicationForm.this.dispose();
             parent.dispose();
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(ApplicationForm.this, "Application not submitted", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 

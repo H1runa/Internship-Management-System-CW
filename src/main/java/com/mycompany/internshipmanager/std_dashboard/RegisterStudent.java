@@ -223,6 +223,8 @@ public class RegisterStudent extends javax.swing.JDialog {
                     RegisterStudent.this.dispose();
                 } catch (SQLException ex){
                     JOptionPane.showMessageDialog(RegisterStudent.this, "Student not registered", "Database Error" ,JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex){
+                    JOptionPane.showMessageDialog(RegisterStudent.this, ex.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(RegisterStudent.this, "Password did not match", "Password Error" ,JOptionPane.ERROR_MESSAGE);

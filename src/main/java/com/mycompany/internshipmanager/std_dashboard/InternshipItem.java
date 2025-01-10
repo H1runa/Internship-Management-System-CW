@@ -63,9 +63,9 @@ public class InternshipItem extends javax.swing.JPanel {
 
         });
         
-        add(new JLabel(intern.getTitle()){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 0 0");
-        add(new JLabel("Duration: "+String.valueOf(intern.getDuration())){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
-        add(new JLabel(intern.getStatus()){{
+        add(new JLabel(truncateText(intern.getTitle(), 20)){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 0 0");
+        add(new JLabel(truncateText("Duration: "+String.valueOf(intern.getDuration()),12)){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
+        add(new JLabel(truncateText(intern.getStatus(),15)){{
             if (intern.getStatus().equals("Open")){
                 setForeground(Color.green);
             } else if (intern.getStatus().equals("Closed")){
@@ -73,6 +73,16 @@ public class InternshipItem extends javax.swing.JPanel {
             }
             setFont(getFont().deriveFont(Font.BOLD, 16f));
         }}, "cell 2 0");
+        
+        
+        
+    }
+    
+    public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength - 3) + "...";
+        }
+        return text;
     }
         
 

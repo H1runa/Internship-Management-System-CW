@@ -59,8 +59,10 @@ public class RegisterEmployer extends javax.swing.JDialog {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(560, 708));
+        setMaximumSize(new java.awt.Dimension(560, 658));
+        setMinimumSize(new java.awt.Dimension(560, 658));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(560, 658));
         setResizable(false);
 
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,6 +191,8 @@ public class RegisterEmployer extends javax.swing.JDialog {
                     RegisterEmployer.this.dispose();
                 } catch (SQLException ex){
                     JOptionPane.showMessageDialog(RegisterEmployer.this, "Employer not registered", "Database Error" ,JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex){
+                    JOptionPane.showMessageDialog(RegisterEmployer.this, ex.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(RegisterEmployer.this, "Password did not match", "Password Error" ,JOptionPane.ERROR_MESSAGE);

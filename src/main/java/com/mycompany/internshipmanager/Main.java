@@ -37,9 +37,9 @@ public class Main {
         }
         
 //        new emp_dashboard(1).setVisible(true);
-//        new std_dashboard(1).setVisible(true);
+        new std_dashboard(1).setVisible(true);
 //        new RegisterStudent().setVisible(true);
-        new Login().setVisible(true);
+//        new Login().setVisible(true);
 //          new RegisterEmployer().setVisible(true);
     }
 }

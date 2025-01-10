@@ -80,6 +80,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "First Name", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        fname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fname.setText("Name");
         jPanel2.add(fname, java.awt.BorderLayout.CENTER);
@@ -89,6 +90,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Last Name", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
+        lname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lname.setText("Name");
         jPanel3.add(lname, java.awt.BorderLayout.CENTER);
@@ -98,6 +100,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date of Birth", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
+        dob.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         dob.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dob.setText("DOB");
         jPanel4.add(dob, java.awt.BorderLayout.CENTER);
@@ -107,6 +110,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
+        email.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         email.setText("Email");
         jPanel5.add(email, java.awt.BorderLayout.CENTER);
@@ -116,6 +120,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phone", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel6.setLayout(new java.awt.BorderLayout());
 
+        phone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         phone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         phone.setText("Phone");
         jPanel6.add(phone, java.awt.BorderLayout.CENTER);
@@ -125,6 +130,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Department", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
+        department.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         department.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         department.setText("Department");
         jPanel7.add(department, java.awt.BorderLayout.CENTER);
@@ -134,6 +140,7 @@ public class ViewStudent extends javax.swing.JDialog {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Year of Study", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel8.setLayout(new java.awt.BorderLayout());
 
+        yos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         yos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         yos.setText("YOS");
         jPanel8.add(yos, java.awt.BorderLayout.CENTER);

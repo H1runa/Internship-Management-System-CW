@@ -151,19 +151,23 @@ public class ViewApplication extends javax.swing.JDialog {
         Dimension buttonSize = new Dimension(80,30);
         JButton accept = new JButton("Accept"){{
             addActionListener(e -> {
-                appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Accepted");                
-                dialog.loadApplicationItems();
                 
-                LocalDate today = LocalDate.now();
-                LocalDate end_date = today.plusMonths(intern.getDuration());
-                
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String string_today = formatter.format(today);
-                String string_end_date = formatter.format(end_date);
-                
-                plaControl.addPlacement(String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), String.valueOf(loggedInId), "Ongoing", string_today, string_end_date, "");
-                
-                ViewApplication.this.dispose();
+                int choice = JOptionPane.showConfirmDialog(ViewApplication.this, "Mark this application as ACCEPTED?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
+                if (choice == JOptionPane.YES_OPTION){
+                    appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Accepted");                
+                    dialog.loadApplicationItems();
+
+                    LocalDate today = LocalDate.now();
+                    LocalDate end_date = today.plusMonths(intern.getDuration());
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String string_today = formatter.format(today);
+                    String string_end_date = formatter.format(end_date);
+
+                    plaControl.addPlacement(String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), String.valueOf(loggedInId), "Ongoing", string_today, string_end_date, "");
+
+                    ViewApplication.this.dispose();
+                }
                 
                 
             });
@@ -173,9 +177,12 @@ public class ViewApplication extends javax.swing.JDialog {
         
         JButton reject = new JButton("Reject"){{
             addActionListener(e -> {
-                appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Rejected");                
-                dialog.loadApplicationItems();
-                ViewApplication.this.dispose();
+                int choice = JOptionPane.showConfirmDialog(ViewApplication.this, "Mark this application as REJECTED?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION){
+                    appl_control.updateApplication(appl.getApplication_id(), String.valueOf(appl.getStu_id()), String.valueOf(appl.getInternship_id()), appl.getDate(), appl.getResume(), "Rejected");                
+                    dialog.loadApplicationItems();
+                    ViewApplication.this.dispose();
+                }
                 
             });
         }};

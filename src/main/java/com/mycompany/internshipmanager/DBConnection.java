@@ -2,25 +2,6 @@ package com.mycompany.internshipmanager;
 
 import java.sql.*;
 
-//public class DBConnection {
-//    public static Connection connect(){
-//        Connection conn = null;
-//        
-//        try {
-//            String dbpath = "database/internships.db";
-//            conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
-//            
-//            System.out.println("DB connection established successfully");
-//            
-//        } catch (SQLException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//        
-//        finally {
-//            return conn;
-//        }
-//    }
-//}
 
 public class DBConnection{
     private static final String dbpath = "database/internships.db";

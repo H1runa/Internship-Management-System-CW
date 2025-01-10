@@ -131,9 +131,9 @@ public class ViewApplicationsList extends javax.swing.JDialog {
                 });
                 
                 Student std = stdControl.getStudentByID(appl.getStu_id());
-                itemPanel.add(new JLabel(std.getFirst_name() + " " + std.getLast_name()){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 0 0");
-                itemPanel.add(new JLabel(appl.getDate()){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 1 0");
-                itemPanel.add(new JLabel(appl.getStatus()){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));
+                itemPanel.add(new JLabel(truncateText(std.getFirst_name() + " " + std.getLast_name(), 20)){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 0 0");
+                itemPanel.add(new JLabel(truncateText(appl.getDate(), 15)){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));}}, "cell 1 0");
+                itemPanel.add(new JLabel(truncateText(appl.getStatus(), 20)){{setForeground(Color.black);setFont(getFont().deriveFont(Font.PLAIN, 20f));
                     if(appl.getStatus().equals("Accepted")){
                         setForeground(Color.green);
                     } else if(appl.getStatus().equals("Rejected")){
@@ -147,6 +147,13 @@ public class ViewApplicationsList extends javax.swing.JDialog {
         }
         revalidate();
         repaint();
+    }
+    
+    public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength - 3) + "...";
+        }
+        return text;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

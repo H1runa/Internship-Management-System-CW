@@ -43,7 +43,7 @@ public class Login extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         email = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        password = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         role = new javax.swing.JComboBox<>();
@@ -69,16 +69,15 @@ public class Login extends javax.swing.JDialog {
         email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(email, java.awt.BorderLayout.PAGE_START);
 
-        panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 510, 60));
+        panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 510, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Password", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel2.add(password, java.awt.BorderLayout.PAGE_START);
+        jPanel2.add(password, java.awt.BorderLayout.CENTER);
 
-        panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 510, 60));
+        panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 510, 50));
 
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         loginButton.setText("Sign In");
@@ -239,7 +238,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel panel;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JLabel registerButton;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JComboBox<String> role;

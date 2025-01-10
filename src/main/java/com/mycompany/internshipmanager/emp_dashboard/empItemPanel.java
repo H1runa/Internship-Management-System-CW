@@ -40,9 +40,9 @@ public class empItemPanel extends javax.swing.JPanel {
         setLayout(new MigLayout("fill, insets 10", "[33%][33%][33%]", "[]"));
         
         
-        JLabel title= new JLabel(t); title.setFont(getFont().deriveFont(Font.PLAIN, 20f));
-        JLabel duration = new JLabel("Duration: " + String.valueOf(d)); duration.setFont(getFont().deriveFont(Font.PLAIN, 20f));
-        JLabel status = new JLabel(s); status.setFont(getFont().deriveFont(Font.PLAIN, 20f));
+        JLabel title= new JLabel(truncateText(t, 20)); title.setFont(getFont().deriveFont(Font.PLAIN, 20f));
+        JLabel duration = new JLabel(truncateText("Duration: " + String.valueOf(d), 15)); duration.setFont(getFont().deriveFont(Font.PLAIN, 20f));
+        JLabel status = new JLabel(truncateText(s, 20)); status.setFont(getFont().deriveFont(Font.PLAIN, 20f));
         
         title.setForeground(Color.black);
         duration.setForeground(Color.black);
@@ -163,6 +163,12 @@ public class empItemPanel extends javax.swing.JPanel {
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
     }
     
+    public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength - 3) + "...";
+        }
+        return text;
+    }
     
 
     

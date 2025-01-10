@@ -86,6 +86,7 @@ public class InternshipUpdateForm extends javax.swing.JDialog {
                 if (e.getButton() == 1){
                     try{
                         control.updateInternship(id,tField.getText(), desc.getText(), String.valueOf(dash.empId) , duration.getText() , status.getSelectedItem().toString());
+                        JOptionPane.showMessageDialog(InternshipUpdateForm.this, "Updated Successfully", "Updated!", JOptionPane.INFORMATION_MESSAGE);
                         InternshipUpdateForm.this.dispose();
                         dash.updateInternshipList();
                     } catch (IllegalArgumentException ex){

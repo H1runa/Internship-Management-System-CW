@@ -103,7 +103,6 @@ com\mycompany\internshipmanager\emp_dashboard\empItemPanel$3.class
 com\mycompany\internshipmanager\emp_dashboard\ViewInternship$3.class
 com\mycompany\internshipmanager\std_dashboard\RegisterStudent$1.class
 com\mycompany\internshipmanager\models\Application.class
-com\mycompany\internshipmanager\OldReport.class
 com\mycompany\internshipmanager\std_dashboard\ApplicationForm$1.class
 com\mycompany\internshipmanager\std_dashboard\ViewPlacement$3.class
 com\mycompany\internshipmanager\custom_ui\GlassPane.class

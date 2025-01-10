@@ -56,9 +56,9 @@ public class PlacementItem extends javax.swing.JPanel {
 
         });
         
-        add(new JLabel(emp.getName()){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 0 0");
-        add(new JLabel(intern.getTitle()){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
-        add(new JLabel(p.getStatus()){{
+        add(new JLabel(truncateText(emp.getName(), 20)){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 0 0");
+        add(new JLabel(truncateText(intern.getTitle(), 20)){{setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
+        add(new JLabel(truncateText(p.getStatus(),15)){{
             if(p.getStatus().equals("Ongoing")){
                 setForeground(Color.green);
             } else if(p.getStatus().equals("Cancelled")){
@@ -68,6 +68,13 @@ public class PlacementItem extends javax.swing.JPanel {
             }
             setFont(getFont().deriveFont(Font.BOLD, 16f));
         }}, "cell 2 0");        
+    }
+    
+    public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength - 3) + "...";
+        }
+        return text;
     }
 
     /**

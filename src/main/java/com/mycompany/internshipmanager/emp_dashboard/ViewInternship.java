@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 
@@ -130,11 +131,12 @@ public class ViewInternship extends javax.swing.JDialog {
         Dimension buttonSize = new Dimension(80,30);
         JButton cancel = new JButton("Cancel Internship"){{
             addActionListener(e -> {
-                plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Cancelled" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
-                dialog.loadApplicationItems();                                                
-                ViewInternship.this.dispose();
-                
-                
+                int choice = JOptionPane.showConfirmDialog(ViewInternship.this, "Cancel this internship?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (choice == JOptionPane.YES_OPTION){
+                    plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Cancelled" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
+                    dialog.loadApplicationItems();                                                
+                    ViewInternship.this.dispose();
+                }                                
             });
         }};
         cancel.setSize(buttonSize);
@@ -142,11 +144,12 @@ public class ViewInternship extends javax.swing.JDialog {
         
         JButton uncancel = new JButton("Renew Internship"){{
             addActionListener(e -> {
-                plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Ongoing" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
-                dialog.loadApplicationItems();                                                
-                ViewInternship.this.dispose();
-                
-                
+                int choice = JOptionPane.showConfirmDialog(ViewInternship.this, "Renew the internship?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (choice == JOptionPane.YES_OPTION){
+                    plaControl.updatePlacement(placement.getPlacement_id(), String.valueOf(placement.getStd_id()), String.valueOf(intern.getId()), String.valueOf(placement.getEmp_id()),"Ongoing" , placement.getStart_date(), placement.getEnd_date(), placement.getFeedback());
+                    dialog.loadApplicationItems();                                                
+                    ViewInternship.this.dispose();
+                }                                
             });
         }};
         uncancel.setSize(buttonSize);

@@ -2,41 +2,23 @@ package com.mycompany.internshipmanager.std_dashboard;
 
 import com.mycompany.internshipmanager.DBConnection;
 import com.mycompany.internshipmanager.Login;
-import com.mycompany.internshipmanager.OldReport;
+
 import com.mycompany.internshipmanager.controllers.ApplicationController;
 import com.mycompany.internshipmanager.controllers.EmployerController;
 import com.mycompany.internshipmanager.controllers.InternshipController;
 import com.mycompany.internshipmanager.controllers.PlacementController;
 import com.mycompany.internshipmanager.controllers.StudentController;
 import com.mycompany.internshipmanager.custom_ui.GlassPane;
-import com.mycompany.internshipmanager.emp_dashboard.emp_dashboard;
 import com.mycompany.internshipmanager.models.Application;
 import com.mycompany.internshipmanager.models.Internship;
 import com.mycompany.internshipmanager.models.Placement;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+
 
 /**
  *

@@ -61,12 +61,12 @@ public class ApplicationItem extends javax.swing.JPanel {
 
         });
         
-        add(new JLabel(intern.getTitle()){{
+        add(new JLabel(truncateText(intern.getTitle(), 20)){{
             setForeground(Color.black);
             setFont(getFont().deriveFont(16f));
         }}, "cell 0 0");
-        add(new JLabel(appl.getDate()){{setForeground(Color.black);setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
-        add(new JLabel(appl.getStatus()){{
+        add(new JLabel(truncateText(appl.getDate(), 12)){{setForeground(Color.black);setForeground(Color.black);setFont(getFont().deriveFont(16f));}}, "cell 1 0");
+        add(new JLabel(truncateText(appl.getStatus(),15)){{
             if (appl.getStatus().equals("To be reviewed")){
                 setForeground(Color.decode("#F4BB44"));
             } else if (appl.getStatus().equals("Accepted")){
@@ -75,6 +75,13 @@ public class ApplicationItem extends javax.swing.JPanel {
                 setForeground(Color.red);
             }
             setFont(getFont().deriveFont(Font.BOLD, 16f));}}, "cell 2 0");
+    }
+    
+    public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength - 3) + "...";
+        }
+        return text;
     }
         
 
