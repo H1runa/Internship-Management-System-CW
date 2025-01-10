@@ -18,8 +18,6 @@ public class Main {
 
     public static void main(String[] args) {
         
-//        StudentController c = new StudentController();
-//        LoggedStudent.getInstance().setStudent(c.getStudentByID(1));
         
          //making sure the database conn is closed when exiting the application
         Runtime.getRuntime().addShutdownHook(new Thread(() -> 
@@ -37,9 +35,9 @@ public class Main {
         }
         
 //        new emp_dashboard(1).setVisible(true);
-        new std_dashboard(1).setVisible(true);
+//        new std_dashboard(1).setVisible(true);
 //        new RegisterStudent().setVisible(true);
-//        new Login().setVisible(true);
+        new Login().setVisible(true);
 //          new RegisterEmployer().setVisible(true);
     }
 }

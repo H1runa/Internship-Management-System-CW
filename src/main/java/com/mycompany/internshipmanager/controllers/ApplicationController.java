@@ -18,18 +18,24 @@ public class ApplicationController {
     }
     
     public void addApplication(String stu_id, String internship_id, String date, String resume, String status){
+        //checking if there's any active applications
+        List<Application> list = getApplications();
+        list.forEach(a -> {
+            if (stu_id.equals(String.valueOf(a.getStu_id())) && internship_id.equals(String.valueOf(a.getInternship_id())) && !a.getStatus().equals("Rejected")){
+                throw new IllegalArgumentException("An application has already been submitted for this internship.");
+            }
+        });
+        
         //status validation
         if (!status.equals("Accepted") && !status.equals("Rejected") && !status.equals("To be reviewed")){
-            System.out.println("Application not added.\nInvalid input");
-            return;
+            throw new IllegalArgumentException("Invalid Status");
         }
         //date validation
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try{
             LocalDate.parse(date, formatter);
         } catch (DateTimeParseException ex){
-            System.out.println("Application not added. \nInvalid input (DATE)");
-            return;
+            throw new IllegalArgumentException("Invalid Date");
         }
         
         int parsedStu_id = 0;
@@ -40,8 +46,8 @@ public class ApplicationController {
             parsedStu_id = Integer.parseInt(stu_id);
             parsedInternship_id = Integer.parseInt(internship_id);
         } catch(NumberFormatException ex){
-            System.out.println("Application not added.\nError: "+ ex.getMessage());
-            return;
+            throw new IllegalArgumentException("Invalid Input");
+            
         }
 
         

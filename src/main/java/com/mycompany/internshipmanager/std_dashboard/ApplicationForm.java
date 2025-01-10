@@ -125,6 +125,8 @@ public class ApplicationForm extends javax.swing.JDialog {
         );
             ApplicationForm.this.dispose();
             parent.dispose();
+        } catch (IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(ApplicationForm.this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex){
             JOptionPane.showMessageDialog(ApplicationForm.this, "Application not submitted", "Error", JOptionPane.ERROR_MESSAGE);
         }
