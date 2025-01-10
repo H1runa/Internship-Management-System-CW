@@ -101,7 +101,7 @@ public class RegisterStudent extends javax.swing.JDialog {
 
         panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 480, 50));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date of Birth", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Date of Birth (yyyy-MM-dd)", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         dob.setHorizontalAlignment(javax.swing.JTextField.CENTER);

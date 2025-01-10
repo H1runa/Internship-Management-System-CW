@@ -146,10 +146,10 @@ public class empItemPanel extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e) {
-                if(e.getButton() == 3){                    
-                    super.mousePressed(e); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-                    contextmenu.show(e.getComponent(), e.getX(), e.getY());
-                }
+                                   
+                super.mousePressed(e); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                contextmenu.show(e.getComponent(), e.getX(), e.getY());
+                
             }
             
         });
